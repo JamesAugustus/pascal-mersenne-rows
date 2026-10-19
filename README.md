@@ -9,7 +9,7 @@ C programs are included to reproduce examples.
 ## Result and example
 
 The note proves when the chosen base and row give a digit representation
-without carrying.
+without carrying: row p + 2 is carry-free in base 2^p − 1 for every integer p ≥ 7.
 
 For example, these base-127 digits represent 2^63:
 
@@ -25,6 +25,10 @@ needed. This result is not a general primality test.
 I used the Pascal coefficients in the binomial theorem as digits in the
 chosen base. The programs compute those coefficients, check that each fits
 the base, and verify that their value equals the expected power of two.
+This lets you reproduce a carry-free row and inspect when its coefficients
+are valid digits. The value comparison checks the implementation of an
+identity already given by the binomial theorem; it is not a separate
+mathematical proof or a primality test.
 
 Formulas, proofs, and references are in the [mathematical note](note.pdf)
 ([text version](note.md)). The [figure](coordinates_en.pdf) explains
@@ -40,8 +44,18 @@ python3 mersenne_rows.py 7 full
 ```
 
 On Windows use `py -3 mersenne_rows.py 7 full`. Expect `clean=yes`,
-`value(mod)=ok`, and `value(full)=ok`. The reported `64 bits` is the length
-of this example's result, not a limit on the program's number size.
+`value(mod)=ok`, and `value(full)=ok`. `clean=yes` means every coefficient
+is below the base, so no carrying is needed. The reported `64 bits` is the length
+of this example's result, not a fixed 64-bit limit. `moduli=3/3` means
+all three candidate moduli were used; those sharing a factor with the base
+are skipped. If none is usable, the program reports that the check is
+unavailable.
+
+Both programs traverse all n + 1 coefficients of row n = p + 2. The `full`
+result occupies p(p + 2) + 1 bits; time and memory costs grow rapidly for
+large exponents. These commands do not replace the separate programs
+used to compute large central coefficients in the historical 52-exponent
+tables.
 
 ## Setup and tests
 

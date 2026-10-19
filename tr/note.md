@@ -4,13 +4,13 @@ James Augustus
 
 ## Özet
 
-M_p = 2^p − 1 olsun. 2^(p·(p+2)) sayısı M_p tabanında yazılınca haneleri tam olarak Pascal üçgeninin p + 2'nci satırındaki sayılar olur; her tek p ≥ 7 için hiçbir hane tabana ulaşmaz. Ortadaki hane, (p + 2) ile bir Katalan sayısının çarpımıdır. Asal çarpanları, hanenin kendisini hesaplamadan Legendre formülünden çıkıyor. Bilinen 52 Mersenne asal üssünün hepsinde kontrol ettim. Kullandığım araçlar klasiktir; bu not belirli bir taban ve satır seçimini kayda geçiriyor.
+M_p = 2^p − 1 olsun. 2^(p·(p+2)) sayısı M_p tabanında yazılınca haneleri tam olarak Pascal üçgeninin p + 2'nci satırındaki sayılar olur; her p ≥ 7 tamsayısı için hiçbir hane tabana ulaşmaz. Tek p için ortadaki hane, (p + 2) ile bir Katalan sayısının çarpımıdır. Asal çarpanları, hanenin kendisini hesaplamadan Legendre formülünden çıkıyor. Ekteki tarihsel tablolar, 14 Ekim 2026 çalışma listesindeki 52 Mersenne asal üssünü kapsıyor. Kullandığım araçlar klasiktir; bu not belirli bir taban ve satır seçimini kayda geçiriyor.
 
 ## 1. Kurulum
 
 Her b tabanı için (b + 1)^n = Σ_{k=0}^{n} C(n,k) b^(n−k). Katsayılar (b + 1)^n sayısının b tabanındaki haneleri ancak her C(n,k) b'den küçükse oluyor, yani ortadaki katsayı b'den küçükse. 10 tabanında bu 11^n için n ≤ 4'te tutuyor, n = 5'ten itibaren tutmuyor.
 
-b = M_p alıyorum; böylece b + 1 = 2^p ve n = p + 2 oluyor. Üs buradan geliyor, (b + 1)^n = (2\^p)\^(p+2) = 2^(p·(p+2)). Not boyunca p tek, n = 2x + 1 ve x = (p + 1)/2. n'inci satırın ortadaki katsayısı C(n, x) = C(n, x + 1).
+b = M_p alıyorum; böylece b + 1 = 2^p ve n = p + 2 oluyor. Üs buradan geliyor, (b + 1)^n = `(2^p)^(p+2)` = 2^(p·(p+2)). Burada p ≥ 2 bir tamsayıdır. Eldesiz yazım sonucu her p ≥ 7 tamsayısı için geçerlidir. Teorem 3 ve Sonuç 4'teki tek p durumu için n = 2x + 1 ve x = (p + 1)/2 alıyorum; iki orta katsayı C(n, x) = C(n, x + 1) olur.
 
 [Şekil 1: satırın koordinatları (PDF)](coordinates_tr.pdf)
 
@@ -18,11 +18,11 @@ b = M_p alıyorum; böylece b + 1 = 2^p ve n = p + 2 oluyor. Üs buradan geliyor
 
 **Teorem 1.** Σ_{k=0}^{n} C(n,k) M_p^(n−k) = 2^(p·(p+2)).
 
-**Teorem 2.** p ≥ 7 tek ise C(p + 2, (p + 1)/2) < M_p. Bu yüzden p + 2'nci satırın her sayısı M_p tabanında bir hanedir ve 2^(p·(p+2)) M_p tabanında o satır olarak yazılıyor.
+**Teorem 2.** Her p ≥ 7 tamsayısı için C(p + 2, ⌊(p + 2)/2⌋) < M_p. Bu yüzden p + 2'nci satırın her sayısı M_p tabanında bir hanedir ve 2^(p·(p+2)) M_p tabanında o satır olarak yazılıyor.
 
-**Teorem 3.** C(2x + 1, x) = (2x + 1) Cat_x, burada Cat_x = C(2x, x)/(x + 1). Özellikle ortadaki hane (p + 2) Cat_((p+1)/2) olur ve ikinci hane olan p + 2 onu böler.
+**Teorem 3.** Tek p ≥ 7 için x = (p + 1)/2 olsun. C(2x + 1, x) = (2x + 1) Cat_x, burada Cat_x = C(2x, x)/(x + 1). Özellikle ortadaki hane (p + 2) Cat_((p+1)/2) olur ve ikinci hane olan p + 2 onu böler.
 
-**Sonuç 4.** (p + 3)/2 < q ≤ p + 2 olan her q asalı ortadaki haneyi tam bir kez böler. (p + 3)/2 asalsa ortadaki haneyi bölmez.
+**Sonuç 4.** Tek p ≥ 7 için (p + 3)/2 < q ≤ p + 2 olan her q asalı ortadaki haneyi tam bir kez böler. (p + 3)/2 asalsa ortadaki haneyi bölmez.
 
 Örnek: p = 7. Taban 127, 2^63 = 128^9 sayısının haneleri 1, 9, 36, 84, 126, 126, 84, 36, 9, 1; 126 = 9 · 14 = 9 · Cat_4. (p + 3)/2 = 5 asalı 126'yı bölmüyor.
 
@@ -30,11 +30,15 @@ b = M_p alıyorum; böylece b + 1 = 2^p ve n = p + 2 oluyor. Üs buradan geliyor
 
 *Teorem 1*, b = M_p için binom teoremi.
 
-*Teorem 2.* Tek n = p + 2 ≥ 9 üzerinde tümevarım. n = 9 için C(9, 4) = 126 < 127 = M_7. Adım için
+*Teorem 2.* p'yi ikişer artırarak tek ve çift p üzerinde ayrı ayrı tümevarım yapıyorum. Tek p için başlangıç n = p + 2 = 9: C(9, 4) = 126 < 127 = M_7. Adım için
 
 C(2x + 3, x + 1) / C(2x + 1, x) = (2x + 3)(2x + 2) / ((x + 1)(x + 2)) = 2(2x + 3)/(x + 2) < 4.
 
-C(2x + 1, x) < M_p ise C(2x + 3, x + 1) < 4 M_p < 4 M_p + 3 = M_(p+2). p = 3 ve p = 5 için eşitsizlik tutmuyor (10 > 7, 35 > 31).
+C(2x + 1, x) < M_p ise C(2x + 3, x + 1) < 4 M_p < 4 M_p + 3 = M_(p+2). Çift p için başlangıç p = 8: C(10, 5) = 252 < 255 = M_8. n = 2x yazınca sonraki orta katsayı için
+
+C(2x + 2, x + 1) / C(2x, x) = 2(2x + 1)/(x + 1) < 4.
+
+Böylece M_(p+2) = 4 M_p + 3 ile aynı karşılaştırma çift p adımını da kanıtlar. İki tümevarım bütün p ≥ 7 tamsayılarını kapsar. p = 2, 3, 4, 5, 6 için orta katsayılar sırasıyla 6, 10, 20, 35, 70 olup 3, 7, 15, 31, 63 tabanlarını aşar.
 
 *Teorem 3.* C(2x + 1, x) = (2x + 1)! / (x! (x + 1)!) = (2x + 1) · (2x)! / (x! (x + 1)!) = (2x + 1) C(2x, x)/(x + 1).
 
@@ -42,7 +46,7 @@ C(2x + 1, x) < M_p ise C(2x + 3, x + 1) < 4 M_p < 4 M_p + 3 = M_(p+2). p = 3 ve 
 
 ## 4. Hesaplar
 
-Ortadaki haneyi bilinen 52 Mersenne asal üssünün hepsi için GMP ile hesapladım, p = 2, …, 136279841. Tabloları ikinci kez, bağımsız bir kodla kontrol ettim. Seçilmiş satırlar:
+Tablolar, 14 Ekim 2026 çalışma listesindeki 52 Mersenne asal üssü için merkez katsayı hesaplarını kaydediyor: p = 2, …, 136279841. Hesaplar gmpy2 ile yapıldı; ayrı bir kontrol betiği merkez katsayıları doğrudan gmpy2.comb ile yeniden hesapladı. Arşivdeki çıktısı 52 satır ve sıfır uyuşmazlık bildiriyor. İki hesap da GMP altyapısını kullandığı için bu, bağımsız bir aritmetik uygulamasıyla doğrulama değildir. Tarihsel kontrol merkez katsayıları ve tablo alanlarını kapsar; aşağıdaki komut satırı programlarıyla her Pascal satırını gezmek veya tam değerini kurmak değildir. Seçilmiş satırlar:
 
 | p | ortadaki hanenin bit sayısı | M_p'nin bit sayısı | ortadaki hanenin onluk basamak sayısı |
 |---|---|---|---|
@@ -60,14 +64,16 @@ Bit farkı yaklaşık ½ log₂ p − 2, C(2x, x) ~ 4^x / √(πx) yaklaşımın
 
 ## 5. Notlar
 
-1. Asallığın bir rolü yok. Teoremler her tek p ≥ 7 için geçerli. Örneğin M_11 = 23 · 89 da temiz bir satır veriyor. Mersenne asal üslerini yalnızca deneme olarak kullandım.
+1. Asallığın bir rolü yok. Eldesiz satır sonucu her p ≥ 7 tamsayısı için geçerlidir; Teorem 3 ve Sonuç 4'te tek p koşulu korunur. Örneğin M_11 = 23 · 89 da temiz bir satır veriyor. Mersenne asal üslerini yalnızca deneme olarak kullandım.
 2. Kullandığım parçalar standarttır: binom teoremi, Legendre formülü, Teorem 3'teki eşitlik ve 11'in kuvvetleri deseninin keyfi tabanlara genişletilmesi [2, 3]. b = M_p, n = p + 2 seçimini literatürde bulamadım, ama aramam kısaydı.
-3. Haneler birbirinden üretilebiliyor, R_(k+1) = R_k (n − k)/(k + 1), ve değer Horner kuralıyla geri kuruluyor. Satırı yazmak için büyük sayıları çarpmak gerekmiyor.
+3. Haneler birbirinden üretilebiliyor, R_(k+1) = R_k (n − k)/(k + 1), ve değer Horner kuralıyla geri kuruluyor. Bu yineleme, büyüyen bir katsayıyı en çok n olan bir tamsayıyla çarpar ve tam bölme yapar; maliyetsiz değildir. Horner ile tam değeri kurmak ayrıca büyük tamsayı çarpmaları gerektirir.
 4. Ortadaki hane Katalan sayısı kullanmadan, yalnız toplamayla da bulunuyor. Her satırın ortası, bir önceki satırın ortası ile komşusunun toplamı, C(9, 4) = C(8, 4) + C(8, 3) = 70 + 56. İlk formülümde Katalan sayısı vardı, sonra onu bu toplamalı biçime çevirdim.
 
 ## 6. Kod
 
-`mersenne_rows_gmp.c` (GMP'li C) satırı yazıyor, her hanenin tabandan küçük olduğunu kontrol ediyor ve değeri 2^(p·(p+2)) ile tam olarak ya da üç asal modülde karşılaştırıyor.
+`mersenne_rows.py` ve `mersenne_rows_gmp.c` (GMP'li C), satır katsayılarını üretir ve her katsayının tabandan küçük olup olmadığını `clean` ile bildirir. Satır yalnız p ≤ 20 için ekrana yazılır. Değer, üç aday asal modülden tabanla aralarında asal olanlarda 2^(p·(p+2)) ile karşılaştırılır; `moduli=m/3` kullanılan modül sayısıdır. Tabanla ortak çarpanı olan modüller, boş bir doğrulama vermemek için atlanır. Kullanılabilir modül kalmazsa `value(mod)=unavailable`, `clean=unchecked` ve 1 çıkış kodu verilir; satır ve tam değer hesaplanmaz. `full` seçeneği ayrıca tam tamsayı eşitliğini karşılaştırır.
+
+Değer kontrolleri, binom eşitliğinin uygulamadaki tutarlılığını sınar; bağımsız bir matematiksel kanıt veya asallık testi değildir. Gösterim açısından belirleyici koşul, en büyük katsayının tabandan küçük olmasıdır. Her iki program da n + 1 katsayıyı gezer; ekrana satır basılmaması bu işi ortadan kaldırmaz. `full` çıktısının bit uzunluğu p(p + 2) + 1'dir. Çok büyük üslerde bu satır taraması ve tam değer belleği pratik olmayabilir; merkez katsayısını doğrudan hesaplamak farklı bir iştir.
 
 ```
 cc -O2 -o mersenne_rows_gmp mersenne_rows_gmp.c -lgmp
@@ -75,7 +81,7 @@ cc -O2 -o mersenne_rows_gmp mersenne_rows_gmp.c -lgmp
 ./mersenne_rows_gmp 132049
 ```
 
-`tr/tables/` klasöründe 52 üssün hepsi için dört Türkçe tablo var. Teoremler ve kanıtları, ortadaki haneler, listedeki ilk 50 üssün ortadaki haneleri ve bunların çarpanları. p = 7, …, 61 için GMP'siz bir kontrol, yanındaki `ctcpu-hunter` deposunda `journal_tests.c` içindeki T21_mersenne_row testi.
+`tr/tables/` klasöründe 52 üslük çalışmaya ait dört Türkçe tablo var. Teoremler ve kanıtları, ortadaki haneler, listedeki ilk 50 üssün ortadaki haneleri ve bunların çarpanları. p = 7, …, 61 için GMP'siz bir kontrol, yanındaki `ctcpu-hunter` deposunda `journal_tests.c` içindeki T21_mersenne_row testi.
 
 ## Kaynaklar
 

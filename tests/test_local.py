@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def run(*args):
-    return subprocess.run(args, text=True, capture_output=True, check=False)
+    return subprocess.run(args, text=True, capture_output=True, check=False, timeout=60)
 
 
 def digest(path):
@@ -31,7 +31,7 @@ class LocalChecks(unittest.TestCase):
         compiler = shutil.which("cc")
         cls.c_available = compiler is not None
         if cls.c_available:
-            built = run(compiler, "-std=c99", "-O2", "-o", str(cls.c_binary),
+            built = run(compiler, "-std=c99", "-O2", "-Wall", "-Wextra", "-Wpedantic", "-Werror", "-o", str(cls.c_binary),
                         str(ROOT / "mersenne_rows_gmp.c"), "-lgmp")
             if built.returncode:
                 cls.c_available = False
@@ -62,13 +62,85 @@ class LocalChecks(unittest.TestCase):
                         result = run(*program, str(p), *mode)
                         self.assertEqual(result.returncode, 0 if clean else 1, result.stderr)
                         lines = result.stdout.splitlines()
-                        self.assertEqual(lines[0].split(), list(map(str, row)))
+                        emitted = list(map(int, lines[0].split()))
+                        self.assertEqual(emitted, row)
+                        self.assertEqual(emitted, emitted[::-1])
+                        self.assertEqual(sum(emitted), 1 << n)
+                        if p % 2:
+                            x = (p + 1) // 2
+                            catalan = math.comb(2 * x, x) // (x + 1)
+                            self.assertEqual(emitted[n // 2], n * catalan)
+                        self.assertIn("moduli=3/3", lines[-1])
+                        if p <= 6:
+                            self.assertFalse(clean)
+                            self.assertEqual(result.returncode, 1)
+                            self.assertIn("clean=NO", lines[-1])
                         self.assertIn(f"clean={'yes' if clean else 'NO'}", lines[-1])
                         self.assertIn("value(mod)=ok", lines[-1])
                         if mode:
                             self.assertIn("value(full)=ok", lines[-1])
                         else:
                             self.assertNotIn("value(full)", lines[-1])
+
+    def test_coprime_modulus_selection(self):
+        spec = importlib.util.spec_from_file_location("mersenne_select", ROOT / "mersenne_rows.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        # Composite candidates test gcd>1, not just base==0 modulo q.
+        self.assertEqual(module.select_moduli(2, [15, 7]), [7])
+        self.assertEqual(module.select_moduli(3, [15, 7]), [15])
+        for p in (61, 89, 127, 122, 178, 254, 61 * 89):
+            base = (1 << p) - 1
+            expected = [q for q in module.MODULI if math.gcd(base, q) == 1]
+            self.assertEqual(module.select_moduli(p, module.MODULI), expected)
+        # Small CLI cases verify the reported count, with and without full.
+        for p in (61, 89, 127, 122, 178, 254):
+            for program in self.programs():
+                for mode in ((), ("full",)):
+                    with self.subTest(p=p, program=program, mode=mode):
+                        result = run(*program, str(p), *mode)
+                        self.assertEqual(result.returncode, 0, result.stderr)
+                        self.assertIn("moduli=2/3", result.stdout)
+                        self.assertIn("value(mod)=ok", result.stdout)
+                        if mode:
+                            self.assertIn("value(full)=ok", result.stdout)
+        # Every fixed modulus divides this base. Selection rejects it before
+        # allocating the base or iterating the roughly 689000-element row.
+        all_skip_p = 61 * 89 * 127
+        self.assertEqual(module.select_moduli(all_skip_p, module.MODULI), [])
+        for program in self.programs():
+            for mode in ((), ("full",)):
+                result = run(*program, str(all_skip_p), *mode)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn("clean=unchecked value(mod)=unavailable moduli=0/3", result.stdout)
+                self.assertIn("checks were not run", result.stderr)
+                self.assertNotIn("value(full)=ok", result.stdout)
+
+    def test_interior_digit_corruption_is_detected(self):
+        py_source = (ROOT / "mersenne_rows.py").read_text()
+        old = "(x * b + R) % q"
+        self.assertIn(old, py_source)
+        py_mutant = self.work / "digit_mutant.py"
+        py_mutant.write_text(py_source.replace(old, "(x * b + R + (k == 1)) % q", 1))
+        mutants = [(sys.executable, str(py_mutant))]
+        if self.c_available:
+            source = (ROOT / "mersenne_rows_gmp.c").read_text()
+            old = "mpz_add(h[i], h[i], R);"
+            self.assertIn(old, source)
+            path = self.work / "digit_mutant.c"
+            path.write_text(source.replace(old, old + "\n            if (k == 1) mpz_add_ui(h[i], h[i], 1);", 1))
+            binary = self.work / "digit_mutant"
+            built = run("cc", "-std=c99", "-O2", "-Wall", "-Wextra", "-Werror",
+                        "-o", str(binary), str(path), "-lgmp")
+            self.assertEqual(built.returncode, 0, built.stderr)
+            mutants.append((str(binary),))
+        for program in mutants:
+            for p in (7, 61, 89, 127, 122):
+                with self.subTest(program=program, p=p):
+                    result = run(*program, str(p))
+                    self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                    self.assertIn("clean=yes value(mod)=WRONG", result.stdout)
+                    self.assertIn("moduli=3/3" if p == 7 else "moduli=2/3", result.stdout)
 
     def test_default_and_invalid_input(self):
         ulong_max = (1 << (8 * ctypes.sizeof(ctypes.c_ulong))) - 1

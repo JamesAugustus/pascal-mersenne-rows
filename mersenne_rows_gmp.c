@@ -7,7 +7,8 @@
      1) clean: every digit is below the base
      2) value: Horner's rule v = v*base + digit gives 2^(p(p+2))
    For large p the full value is huge, so by default the value is checked
-   modulo three primes. Pass "full" as second argument for exact comparison.
+   modulo the coprime members of three fixed primes; the used count is reported.
+   Pass "full" as second argument for exact comparison.
 
    Build: cc -O2 -o mersenne_rows_gmp mersenne_rows_gmp.c -lgmp
    Run:   ./mersenne_rows_gmp 7 full
@@ -52,6 +53,7 @@ int main(int argc, char **argv) {
     unsigned long n = p + 2;                     /* row number */
     unsigned long k;
     int clean = 1, value_mod = 1, value_full = 1;
+    int active[NQ], used = 0;
     mpz_t b, R, v, t, q[NQ], bq[NQ], h[NQ], e;
 
     /* n+1 is used by k+1 on the last iteration; p <= ULONG_MAX-3 keeps it safe.
@@ -63,8 +65,6 @@ int main(int argc, char **argv) {
     }
 
     mpz_inits(b, R, v, t, e, NULL);
-    mpz_ui_pow_ui(b, 2, p);
-    mpz_sub_ui(b, b, 1);                         /* base = M_p */
 
     /* check moduli: 2^127 - 1, 2^89 - 1, 2^61 - 1 (all three prime) */
     {
@@ -74,10 +74,26 @@ int main(int argc, char **argv) {
             mpz_inits(q[i], bq[i], h[i], NULL);
             mpz_ui_pow_ui(q[i], 2, us[i]);
             mpz_sub_ui(q[i], q[i], 1);
-            mpz_mod(bq[i], b, q[i]);
+            /* gcd(base,q) = gcd((2^p mod q)-1,q), without allocating base. */
+            mpz_set_ui(t, 2);
+            mpz_powm_ui(bq[i], t, p, q[i]);
+            mpz_sub_ui(bq[i], bq[i], 1);
+            mpz_mod(bq[i], bq[i], q[i]);
+            mpz_gcd(t, bq[i], q[i]);
+            active[i] = mpz_cmp_ui(t, 1) == 0;
+            used += active[i];
         }
     }
 
+    if (used == 0) {
+        printf("p=%lu row=%lu clean=unchecked value(mod)=unavailable moduli=0/%d\n", p, n, NQ);
+        fprintf(stderr, "No coprime check modulus; row and full checks were not run.\n");
+        for (int i = 0; i < NQ; i++) mpz_clears(q[i], bq[i], h[i], NULL);
+        mpz_clears(b, R, v, t, e, NULL);
+        return 1;
+    }
+    mpz_ui_pow_ui(b, 2, p);
+    mpz_sub_ui(b, b, 1);                         /* base = M_p */
     mpz_set_ui(R, 1);                            /* leftmost digit 1 */
     mpz_set_ui(v, 0);
     for (k = 0; k <= n; k++) {
@@ -85,6 +101,7 @@ int main(int argc, char **argv) {
         if (p <= 20) gmp_printf("%Zd ", R);
         if (mpz_cmp(R, b) >= 0) clean = 0;      /* digit reaches the base */
         for (i = 0; i < NQ; i++) {               /* h = h*base + digit (mod q) */
+            if (!active[i]) continue;
             mpz_mul(h[i], h[i], bq[i]);
             mpz_add(h[i], h[i], R);
             mpz_mod(h[i], h[i], q[i]);
@@ -107,6 +124,7 @@ int main(int argc, char **argv) {
         mpz_inits(two, expected, NULL);
         mpz_set_ui(two, 2);
         for (i = 0; i < NQ; i++) {
+            if (!active[i]) continue;
             mpz_powm(expected, two, e, q[i]);
             if (mpz_cmp(h[i], expected) != 0) value_mod = 0;
         }
@@ -122,7 +140,7 @@ int main(int argc, char **argv) {
         printf(" value(full)=%s (%zu bits)", value_full ? "ok" : "WRONG",
                mpz_sizeinbase(v, 2));
     }
-    printf("\n");
+    printf(" moduli=%d/%d\n", used, NQ);
     for (int i = 0; i < NQ; i++) mpz_clears(q[i], bq[i], h[i], NULL);
     mpz_clears(b, R, v, t, e, NULL);
     return (clean && value_mod && value_full) ? 0 : 1;
