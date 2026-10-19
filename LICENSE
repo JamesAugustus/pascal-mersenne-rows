@@ -1,4 +1,4 @@
-Code (mersenne_rows_gmp.c, mersenne_rows.py): MIT License
+MIT License
 
 Copyright (c) 2026 James Augustus
 
@@ -19,8 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-Text and tables (README.md, note.md, note.pdf, tables/):
-Creative Commons Attribution 4.0 International (CC BY 4.0)
-https://creativecommons.org/licenses/by/4.0/legalcode
-Attribution: James Augustus

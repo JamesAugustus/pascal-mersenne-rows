@@ -10,6 +10,7 @@ import tempfile
 FILES = (
     "CITATION.cff",
     "LICENSE",
+    "LICENSE-CC-BY-4.0",
     "README.md",
     "coordinates_en.pdf",
     "setup/install.bat",

@@ -69,7 +69,11 @@ cc -O2 -o mersenne_rows_gmp mersenne_rows_gmp.c -lgmp
 - `setup/`: installation; `tests/`: program and installation checks.
 - `tables/`: tables; `coordinates_en.pdf`: figure. Turkish versions are under `tr/`.
 - `note.md`, `note.pdf`: text and PDF versions of the mathematical note.
-- [LICENSE](LICENSE): text and tables CC BY 4.0; code MIT.
+- Licenses: all source code, launchers, setup files and tests are covered by
+  [MIT](LICENSE). English and Turkish documentation, PDFs, figures, tables
+  and citation metadata are covered by [CC BY 4.0](LICENSE-CC-BY-4.0).
+  Copyright © 2026 James Augustus. These licenses apply to their respective
+  materials, rather than offering a choice of license for every file.
 - [CITATION.cff](CITATION.cff): citation information.
 
 James Augustus · jamesaugustus1313@gmail.com

@@ -67,7 +67,11 @@ cc -O2 -o mersenne_rows_gmp mersenne_rows_gmp.c -lgmp
 - Üst klasördeki `tables/`: İngilizce tablolar; buradaki `tables/`: Türkçe tablolar.
 - `coordinates_tr.pdf`: Türkçe şekil.
 - `note.md`, `note.pdf`: matematik notunun metin ve PDF biçimleri.
-- [LICENSE](../LICENSE): metin ve tablolar CC BY 4.0, kod MIT.
+- Lisanslar: tüm kaynak kodları, başlatıcılar, kurulum dosyaları ve testler
+  [MIT](../LICENSE) kapsamındadır. İngilizce ve Türkçe belgeler, PDF’ler,
+  şekiller, tablolar ve atıf bilgileri [CC BY 4.0](../LICENSE-CC-BY-4.0)
+  kapsamındadır. Telif hakkı © 2026 James Augustus. Her lisans belirtilen
+  dosya grubuna uygulanır; bütün dosyalar için iki lisans arasında seçim sunulmaz.
 - [CITATION.cff](../CITATION.cff): çalışmaya kaynak gösterme bilgileri.
 
 James Augustus · jamesaugustus1313@gmail.com
