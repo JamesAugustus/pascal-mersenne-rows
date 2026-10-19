@@ -1,0 +1,4 @@
+# The Python program uses only the Python 3 standard library.
+# No third-party Python packages are required.
+# GMP is an optional OS-level dependency for mersenne_rows_gmp.c;
+# pip cannot install it.

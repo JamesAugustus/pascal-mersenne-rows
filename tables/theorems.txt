@@ -1,0 +1,101 @@
+Why the Pascal row fits the chosen base
+I explain why these row entries fit in the base and why the row number divides the middle entry.
+This file contains proof statements rather than data columns. T1, T2 and T3 are statement names.
+Pascal rows start at row 0 with 1; later rows have 1 at the ends and neighboring sums inside.
+C(n,k) is entry k of row n, counting from 0; these entries are called binomial coefficients.
+Read the example p = 7 below. p is the exponent; M = 127 the base; n = 9 the row; x = 4 the left middle position.
+Its middle is 126 = 9·14. It fits because 126 < 127; the whole row has value 128^9 = 2^63.
+Cat_x names the Catalan number C(2x,x)/(x+1); here Cat_4 = 14, the factor left after dividing 126 by 9.
+A factorial, marked !, multiplies positive integers up to its argument; floor means round down.
+Legendre's formula counts how often a prime factor occurs in those products by division.
+The proofs justify the digit reading, but do not test primality. Whether this speeds up a search remains OPEN.
+The computation notes below report the source's checks; I have not repeated those large computations.
+
+DEFINITIONS
+-----------
+p      odd Mersenne exponent (p >= 3).
+M      M = 2^p - 1, the base.
+n      n = p + 2, the row number. Since p is odd, n is odd.
+x      x = (p + 1)/2, so n = 2x + 1.
+C(n,k) binomial coefficient, entry k of row n (counting from 0).
+middle C(n,x). Since n is odd there are two equal middles, C(n,x) = C(n,x+1).
+Cat_x  Catalan number, C(2x,x)/(x+1).
+
+THREE THEOREMS
+--------------
+T1 (value)    sum_{k=0..n} C(n,k) * M^(n-k) = (M+1)^n = 2^(p*n)      PROOF
+T2 (clean)    if p >= 7 is odd, middle < M. Every digit fits in the     PROOF
+              base, and the row is read digit by digit with no carry.
+T3 (middle)   C(2x+1, x) = (2x+1) * Cat_x                              PROOF
+              In the Mersenne row: middle = (p+2) * Cat_((p+1)/2)
+
+PROOF OF T1
+  Binomial theorem, (b+1)^n = sum C(n,k) b^(n-k) for every b. Take b = M.
+  Since M+1 = 2^p, (M+1)^n = 2^(p*n).
+
+PROOF OF T2  (n odd, n = 2x+1, n >= 9)
+  Claim: C(n,x) < 2^(n-2) - 1.   (Since p = n-2, the right side is exactly M.)
+  Step 0.  n = 9: C(9,4) = 126 < 2^7 - 1 = 127.
+  Step 1.  Ratio from row n to row n+2:
+           C(2x+3, x+1) / C(2x+1, x) = (2x+3)(2x+2) / ((x+1)(x+2))
+                                      = 2(2x+3) / (x+2).
+  Step 2.  2(2x+3) = 4x + 6  <  4x + 8 = 4(x+2), so the ratio is < 4.
+  Step 3.  Induction: if C(n,x) < 2^(n-2) - 1, then
+           C(n+2, x+1) < 4*(2^(n-2) - 1) = 2^n - 4 < 2^n - 1,
+           and 2^n - 1 is the base for row n+2. The claim holds for n+2.
+  Result.  For odd n >= 9 the middle is below M. The middle is the largest
+           entry of the row, so every digit is below M.
+  Note.    It fails for p = 3, 5 (n = 5: middle 10 > 7; n = 7: 35 > 31).
+           Step 0 starts at n = 9, in agreement with the tables.
+
+PROOF OF T3
+  (a) C(2x+1, x) = (2x+1)! / ( x! * (x+1)! )                  [definition]
+  (b) (2x+1)! = (2x+1) * (2x)!                                [factorial]
+  (c) C(2x+1, x) = (2x+1) * (2x)! / ( x! * (x+1)! )
+  (d) (2x)! / ( x! * (x+1)! ) = C(2x,x) / (x+1) = Cat_x       [Catalan]
+  (e) Cat_x is an integer: C(2x,x) - C(2x,x+1) = C(2x,x) * (1 - x/(x+1))
+                                               = C(2x,x)/(x+1).
+  From (c) and (d), C(2x+1,x) = (2x+1) * Cat_x.
+  RESULT: n = p + 2 divides the middle digit. The second digit (= n) divides the middle.
+
+EXAMPLE p = 7
+  n = 9, x = 4.  Cat_4 = C(8,4)/5 = 70/5 = 14.
+  middle = 9 * 14 = 126.  Directly C(9,4) = 126.
+  Row (base 127):  1 9 36 84 126 126 84 36 9 1
+  Value: 128^9 = 2^63.   126 < 127 (T2).
+  Factors: 126 = 2 * 3^2 * 7 = (9 = 3^2) * (14 = 2 * 7).
+
+EXAMPLE p = 13
+  n = 15, x = 7.  Cat_7 = 429.  middle = 15 * 429 = 6435 = C(15,7).
+  6435 = 3^2 * 5 * 11 * 13 = (15 = 3 * 5) * (429 = 3 * 11 * 13).
+
+DIGIT TO DIGIT
+  R_0 = 1        R_(k+1) = R_k * (n - k) / (k + 1)
+  Previous row:  C(n-1, k) = C(n,k) * (n - k) / n
+
+FACTORING (Legendre; the large number is never formed)
+  Exponent of the prime q in the middle digit:
+      e_q = v_q(n!) - v_q(x!) - v_q((n-x)!),   v_q(m!) = floor(m/q) + floor(m/q^2) + ...
+  Every prime q with (p+3)/2 < q <= n appears in the middle exactly once.
+  If (p+3)/2 is prime, it does not appear at all (exponent 0).
+  PROOF, and checked for odd primes p <= 3000 with no exception.
+  Proof: n = 2x+1, n-x = x+1 = (p+3)/2.
+    q > x+1 : q divides n! once (q <= n < 2q) and divides neither x! nor (x+1)!.
+              Exponent 1 - 0 - 0 = 1.
+    q = x+1 : q divides (x+1)! once. Exponent 1 - 0 - 1 = 0.
+  Example p = 7: x+1 = 5 is prime and 126 = 2*3^2*7 has no factor 5.
+  The same happens for p = 19, 31, 1279, 2203, 4423.
+
+COMPUTATION
+  The middle digit was computed with gmpy2 for all 52 Mersenne exponents (p = 2..136279841).
+  middle = n * Cat_x: 0 errors in the 51 rows with p = 3..136279841.
+  middle < M: true for every p = 7..136279841 (already proved by T2).
+  Tables: middle_digits.txt, middle_digits_factored.txt
+  Exponent list: the first 20 verified by Lucas-Lehmer; 21-52 from the public GIMPS list,
+  not recomputed.
+
+STATUS
+  T1, T2, T3 are proved with known tools. T3 (C(2x+1,x) = (2x+1)*Cat_x) is a
+  standard identity. What this adds is the choice of the row n = p + 2 and the
+  base M for a Mersenne exponent. Whether this helps a Mersenne search is OPEN.
+  It says nothing about primality (M_11 = 23*89 gives the same result).

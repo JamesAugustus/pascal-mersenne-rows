@@ -1,0 +1,267 @@
+Middle entries for the first fifty listed exponents
+I give each middle entry as a number, its prime factors, and its base eight writing.
+Pascal rows have 1 at the ends and neighboring sums inside; row 0 is just 1.
+p is the exponent in M_p = 2^p − 1; n = p+2 is the row; h = floor(n/2) is its middle position.
+C(n,h) means that entry, counting positions from 0; floor means round down.
+Read record #4. Its list number is 4, p = 7, n = 9, h = 4, and C(9,4) names the middle entry.
+Decimal gives 126; octal, meaning base 8, gives 176_8 = 1·64 + 7·8 + 6 = 126.
+The factorization 2·3^2·7 equals 126. A prime is greater than one and divisible only by itself and 1.
+For p <= 127 I give the whole value and factorization. Larger records give decimal, binary and base eight digit counts.
+They also give the factors through 17 and the bit count of the remaining product, whose prime factors are at least 19.
+The base eight preview keeps the first and last 12 digits; the number in the gap counts omitted digits.
+I use these forms to compare size and factors without printing millions of digits. They do not prove primality.
+
+#1  p=2  n=4  h=2   C(4,2)
+   decimal: 6
+   octal  : 6_8
+   factors: 2 · 3
+
+#2  p=3  n=5  h=2   C(5,2)
+   decimal: 10
+   octal  : 12_8
+   factors: 2 · 5
+
+#3  p=5  n=7  h=3   C(7,3)
+   decimal: 35
+   octal  : 43_8
+   factors: 5 · 7
+
+#4  p=7  n=9  h=4   C(9,4)
+   decimal: 126
+   octal  : 176_8
+   factors: 2 · 3^2 · 7
+
+#5  p=13  n=15  h=7   C(15,7)
+   decimal: 6435
+   octal  : 14443_8
+   factors: 3^2 · 5 · 11 · 13
+
+#6  p=17  n=19  h=9   C(19,9)
+   decimal: 92378
+   octal  : 264332_8
+   factors: 2 · 11 · 13 · 17 · 19
+
+#7  p=19  n=21  h=10   C(21,10)
+   decimal: 352716
+   octal  : 1260714_8
+   factors: 2^2 · 3 · 7 · 13 · 17 · 19
+
+#8  p=31  n=33  h=16   C(33,16)
+   decimal: 1166803110
+   octal  : 10543000246_8
+   factors: 2 · 3^3 · 5 · 11 · 19 · 23 · 29 · 31
+
+#9  p=61  n=63  h=31   C(63,31)
+   decimal: 916312070471295267
+   octal  : 62673117444766020443_8
+   factors: 3^2 · 7^2 · 11 · 17 · 19 · 37 · 41 · 43 · 47 · 53 · 59 · 61
+
+#10  p=89  n=91  h=45   C(91,45)
+   decimal: 205397724721029574666088520
+   octal  : 124746521737427154661035370110_8
+   factors: 2^3 · 3^2 · 5 · 7^2 · 13 · 17 · 29 · 47 · 53 · 59 · 61 · 67 · 71 · 73 · 79 · 83 · 89
+
+#11  p=107  n=109  h=54   C(109,54)
+   decimal: 49263609265046928387789436527216
+   octal  : 115562647175024056226271326361121160_8
+   factors: 2^4 · 3 · 7 · 19 · 29 · 31 · 59 · 61 · 67 · 71 · 73 · 79 · 83 · 89 · 97 · 101 · 103 · 107 · 109
+
+#12  p=127  n=129  h=64   C(129,64)
+   decimal: 47533812913980349072792166510047556550
+   octal  : 436052675274257510250402746642727246071706_8
+   factors: 2 · 3^2 · 5^2 · 11^2 · 17 · 23 · 37 · 41 · 43 · 67 · 71 · 73 · 79 · 83 · 89 · 97 · 101 · 103 · 107 · 109 · 113 · 127
+
+#13  p=521  n=523  h=261   C(523,261)
+   decimal digits: 156   bits: 519   octal digits: 173
+   factors: 2^2 · 3 · 7 · 11 · 13 · 17 · remainder   (remainder = 501 bits)
+   octal  : 435315677305_8 …(149 digits)… 121744034524_8
+
+#14  p=607  n=609  h=304   C(609,304)
+   decimal digits: 182   bits: 605   octal digits: 202
+   factors: 2^3 · 3^3 · 7^2 · 11^2 · 13 · 17 · remainder   (remainder = 576 bits)
+   octal  : 204211447365_8 …(178 digits)… 541113173350_8
+
+#15  p=1279  n=1281  h=640   C(1281,640)
+   decimal digits: 384   bits: 1276   octal digits: 426
+   factors: 2^2 · 3^5 · 5 · 7^2 · 13 · 17 · remainder   (remainder = 1250 bits)
+   octal  : 133204104747_8 …(402 digits)… 553521764464_8
+
+#16  p=2203  n=2205  h=1102   C(2205,1102)
+   decimal digits: 663   bits: 2200   octal digits: 734
+   factors: 2^5 · 3^7 · 5^3 · 7^2 · 11 · 13^3 · 17^2 · remainder   (remainder = 2148 bits)
+   octal  : 105445763305_8 …(710 digits)… 151774600640_8
+
+#17  p=2281  n=2283  h=1141   C(2283,1141)
+   decimal digits: 686   bits: 2278   octal digits: 760
+   factors: 2^5 · 3^5 · 5^2 · 11^2 · 13^3 · 17 · remainder   (remainder = 2238 bits)
+   octal  : 104300444270_8 …(736 digits)… 771310361340_8
+
+#18  p=3217  n=3219  h=1609   C(3219,1609)
+   decimal digits: 968   bits: 3213   octal digits: 1071
+   factors: 2^4 · 3^6 · 5^3 · 7^3 · 13^3 · 17^2 · remainder   (remainder = 3165 bits)
+   octal  : 714553715606_8 …(1047 digits)… 103035242420_8
+
+#19  p=4253  n=4255  h=2127   C(4255,2127)
+   decimal digits: 1279   bits: 4249   octal digits: 1417
+   factors: 2^2 · 3^4 · 5^2 · 7 · 11^2 · 13^3 · remainder   (remainder = 4215 bits)
+   octal  : 144136654023_8 …(1393 digits)… 722502255634_8
+
+#20  p=4423  n=4425  h=2212   C(4425,2212)
+   decimal digits: 1331   bits: 4419   octal digits: 1473
+   factors: 2^4 · 3^3 · 5^5 · 7 · 11 · 17 · remainder   (remainder = 4388 bits)
+   octal  : 610760636001_8 …(1449 digits)… 672022323420_8
+
+#21  p=9689  n=9691  h=4845   C(9691,4845)
+   decimal digits: 2916   bits: 9685   octal digits: 3229
+   factors: 2^7 · 3^4 · 5^4 · 7 · 11^2 · 13^2 · 17^2 · remainder   (remainder = 9637 bits)
+   octal  : 102310326071_8 …(3205 digits)… 017217240200_8
+
+#22  p=9941  n=9943  h=4971   C(9943,4971)
+   decimal digits: 2992   bits: 9937   octal digits: 3313
+   factors: 2^6 · 3^2 · 5^4 · 11 · remainder   (remainder = 9915 bits)
+   octal  : 101426753277_8 …(3289 digits)… 112144272500_8
+
+#23  p=11213  n=11215  h=5607   C(11215,5607)
+   decimal digits: 3374   bits: 11208   octal digits: 3736
+   factors: 2^6 · 3^4 · 5^4 · 11 · 13 · 17 · remainder   (remainder = 11176 bits)
+   octal  : 755566634032_8 …(3712 digits)… 641144570100_8
+
+#24  p=19937  n=19939  h=9969   C(19939,9969)
+   decimal digits: 6000   bits: 19932   octal digits: 6644
+   factors: 2^7 · 3^5 · 5^4 · 7 · 11 · 13^3 · remainder   (remainder = 19890 bits)
+   octal  : 562230655661_8 …(6620 digits)… 523124065200_8
+
+#25  p=21701  n=21703  h=10851   C(21703,10851)
+   decimal digits: 6531   bits: 21696   octal digits: 7232
+   factors: 2^5 · 3^8 · 5^2 · 7^3 · 11^3 · 13^2 · 17 · remainder   (remainder = 21643 bits)
+   octal  : 542735121773_8 …(7208 digits)… 777410575740_8
+
+#26  p=23209  n=23211  h=11605   C(23211,11605)
+   decimal digits: 6985   bits: 23204   octal digits: 7735
+   factors: 2^7 · 3^7 · 5^4 · 7^4 · 11^3 · 13^2 · 17 · remainder   (remainder = 23143 bits)
+   octal  : 253465447741_8 …(7711 digits)… 301606447200_8
+
+#27  p=44497  n=44499  h=22249   C(44499,22249)
+   decimal digits: 13394   bits: 44491   octal digits: 14831
+   factors: 2^8 · 3^4 · 5 · 7^2 · 11^4 · 13^3 · 17^3 · remainder   (remainder = 44432 bits)
+   octal  : 173740550432_8 …(14807 digits)… 417053016400_8
+
+#28  p=86243  n=86245  h=43122   C(86245,43122)
+   decimal digits: 25960   bits: 86237   octal digits: 28746
+   factors: 2^7 · 3^3 · 5^7 · 7^3 · 11 · 13^2 · 17^3 · remainder   (remainder = 86177 bits)
+   octal  : 262033100766_8 …(28722 digits)… 670406656200_8
+
+#29  p=110503  n=110505  h=55252   C(110505,55252)
+   decimal digits: 33263   bits: 110497   octal digits: 36833
+   factors: 2^10 · 3^4 · 5^4 · 7 · 11^3 · 13^2 · 17 · remainder   (remainder = 110446 bits)
+   octal  : 116514434114_8 …(36809 digits)… 351647656000_8
+
+#30  p=132049  n=132051  h=66025   C(132051,66025)
+   decimal digits: 39749   bits: 132043   octal digits: 44015
+   factors: 2^6 · 3^3 · 5^2 · 7^2 · 11^3 · 13^2 · 17^2 · remainder   (remainder = 131996 bits)
+   octal  : 107745147613_8 …(43991 digits)… 373273500500_8
+
+#31  p=216091  n=216093  h=108046   C(216093,108046)
+   decimal digits: 65048   bits: 216084   octal digits: 72028
+   factors: 2^8 · 3^6 · 5^4 · 7 · 11^2 · 13 · 17^3 · remainder   (remainder = 216032 bits)
+   octal  : 701743114060_8 …(72004 digits)… 463373161400_8
+
+#32  p=756839  n=756841  h=378420   C(756841,378420)
+   decimal digits: 227829   bits: 756831   octal digits: 252277
+   factors: 2^9 · 3^5 · 5^3 · 7^3 · 11^2 · 17 · remainder   (remainder = 756788 bits)
+   octal  : 740661656521_8 …(252253 digits)… 455523553000_8
+
+#33  p=859433  n=859435  h=429717   C(859435,429717)
+   decimal digits: 258713   bits: 859425   octal digits: 286475
+   factors: 2^9 · 3^2 · 5^7 · 7^6 · 11^2 · 13^2 · 17^2 · remainder   (remainder = 859358 bits)
+   octal  : 703170366446_8 …(286451 digits)… 464562141000_8
+
+#34  p=1257787  n=1257789  h=628894   C(1257789,628894)
+   decimal digits: 378630   bits: 1257779   octal digits: 419260
+   factors: 2^10 · 3^7 · 5^2 · 7^4 · 11^2 · 13^2 · 17^2 · remainder   (remainder = 1257720 bits)
+   octal  : 272377255316_8 …(419236 digits)… 124614672000_8
+
+#35  p=1398269  n=1398271  h=699135   C(1398271,699135)
+   decimal digits: 420919   bits: 1398261   octal digits: 466087
+   factors: 2^6 · 3^7 · 5^5 · 7^4 · 11^3 · 13^3 · 17 · remainder   (remainder = 1398195 bits)
+   octal  : 541607262727_8 …(466063 digits)… 107577734100_8
+
+#36  p=2976221  n=2976223  h=1488111   C(2976223,1488111)
+   decimal digits: 895930   bits: 2976212   octal digits: 992071
+   factors: 2^10 · 3^7 · 5^4 · 7^6 · 11^3 · 17^2 · remainder   (remainder = 2976147 bits)
+   octal  : 362366066410_8 …(992047 digits)… 100151432000_8
+
+#37  p=3021377  n=3021379  h=1510689   C(3021379,1510689)
+   decimal digits: 909523   bits: 3021368   octal digits: 1007123
+   factors: 2^8 · 3^7 · 5^5 · 7^4 · 11 · 13^4 · remainder   (remainder = 3021308 bits)
+   octal  : 360522676407_8 …(1007099 digits)… 064014534400_8
+
+#38  p=6972593  n=6972595  h=3486297   C(6972595,3486297)
+   decimal digits: 2098957   bits: 6972584   octal digits: 2324195
+   factors: 2^10 · 3^5 · 5^6 · 7^4 · 11^2 · 13^4 · 17^2 · remainder   (remainder = 6972511 bits)
+   octal  : 236327426770_8 …(2324171 digits)… 632205352000_8
+
+#39  p=13466917  n=13466919  h=6733459   C(13466919,6733459)
+   decimal digits: 4053943   bits: 13466907   octal digits: 4488969
+   factors: 2^12 · 3^5 · 5^5 · 7^3 · 11^5 · 13^3 · 17^4 · remainder   (remainder = 13466823 bits)
+   octal  : 707760314415_8 …(4488945 digits)… 750136470000_8
+
+#40  p=20996011  n=20996013  h=10498006   C(20996013,10498006)
+   decimal digits: 6320426   bits: 20996001   octal digits: 6998667
+   factors: 2^12 · 3^7 · 5^3 · 7^3 · 11^2 · 13 · 17^3 · remainder   (remainder = 20995940 bits)
+   octal  : 555131641410_8 …(6998643 digits)… 172326730000_8
+
+#41  p=24036583  n=24036585  h=12018292   C(24036585,12018292)
+   decimal digits: 7235730   bits: 24036573   octal digits: 8012191
+   factors: 2^13 · 3^14 · 5^5 · 7^3 · 11^6 · 13 · 17^2 · remainder   (remainder = 24036485 bits)
+   octal  : 525230404047_8 …(8012167 digits)… 576711360000_8
+
+#42  p=25964951  n=25964953  h=12982476   C(25964953,12982476)
+   decimal digits: 7816226   bits: 25964941   octal digits: 8654981
+   factors: 2^10 · 3^7 · 5^4 · 7^4 · 11^4 · 13^3 · 17 · remainder   (remainder = 25964870 bits)
+   octal  : 122060456266_8 …(8654957 digits)… 117201306000_8
+
+#43  p=30402457  n=30402459  h=15201229   C(30402459,15201229)
+   decimal digits: 9152049   bits: 30402447   octal digits: 10134149
+   factors: 2^16 · 3^10 · 5^7 · 7 · 11^3 · 13 · 17^2 · remainder   (remainder = 30402374 bits)
+   octal  : 457360452175_8 …(10134125 digits)… 366476200000_8
+
+#44  p=32582657  n=32582659  h=16291329   C(32582659,16291329)
+   decimal digits: 9808354   bits: 32582647   octal digits: 10860883
+   factors: 2^9 · 3^9 · 5^5 · 7^4 · 11^3 · 13 · 17^3 · remainder   (remainder = 32582574 bits)
+   octal  : 111222036374_8 …(10860859 digits)… 663224237000_8
+
+#45  p=37156667  n=37156669  h=18578334   C(37156669,18578334)
+   decimal digits: 11185269   bits: 37156657   octal digits: 12385553
+   factors: 2^16 · 3^9 · 5^5 · 7^5 · 11^4 · 13^3 · 17^2 · remainder   (remainder = 37156568 bits)
+   octal  : 104500576127_8 …(12385529 digits)… 232720600000_8
+
+#46  p=42643801  n=42643803  h=21321901   C(42643803,21321901)
+   decimal digits: 12837060   bits: 42643791   octal digits: 14214597
+   factors: 2^11 · 3^2 · 5^4 · 7^6 · 11 · 13 · 17^3 · remainder   (remainder = 42643731 bits)
+   octal  : 400171310401_8 …(14214573 digits)… 165076054000_8
+
+#47  p=43112609  n=43112611  h=21556305   C(43112611,21556305)
+   decimal digits: 12978186   bits: 43112598   octal digits: 14370866
+   factors: 2^10 · 3^10 · 5^2 · 7^4 · 11^2 · 13^2 · 17^2 · remainder   (remainder = 43112534 bits)
+   octal  : 775534220454_8 …(14370842 digits)… 224323532000_8
+
+#48  p=57885161  n=57885163  h=28942581   C(57885163,28942581)
+   decimal digits: 17425167   bits: 57885150   octal digits: 19295050
+   factors: 2^13 · 3^4 · 5^5 · 7^4 · 11^5 · 13^4 · 17^2 · remainder   (remainder = 57885068 bits)
+   octal  : 667671221602_8 …(19295026 digits)… 750524420000_8
+
+#49  p=74207281  n=74207283  h=37103641   C(74207283,37103641)
+   decimal digits: 22338615   bits: 74207270   octal digits: 24735757
+   factors: 2^9 · 3^11 · 5^8 · 7^3 · 11^4 · 13^3 · 17 · remainder   (remainder = 74207188 bits)
+   octal  : 302174560143_8 …(24735733 digits)… 227174423000_8
+
+#50  p=77232917  n=77232919  h=38616459   C(77232919,38616459)
+   decimal digits: 23249422   bits: 77232906   octal digits: 25744302
+   factors: 2^12 · 3^9 · 5^5 · 7^4 · 11^4 · 13^4 · 17^2 · remainder   (remainder = 77232820 bits)
+   octal  : 574632320301_8 …(25744278 digits)… 440177130000_8
+
+NOTES
+Small p: octal converted back and factors multiplied back, compared with C(n,h): equal.
+Large p: computed with gmpy2; first and last 12 octal digits taken directly from the number.
+Exponent list: first 20 verified by Lucas-Lehmer; 21-50 from the GIMPS list.

@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Pascal Mersenne Rows: powers of two as carry-free Pascal rows in Mersenne bases"
+authors:
+  - name: "James Augustus"
+    email: "jamesaugustus1313@gmail.com"
+license: CC-BY-4.0
+repository-code: "https://github.com/JamesAugustus/pascal-mersenne-rows"

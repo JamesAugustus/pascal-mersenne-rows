@@ -1,0 +1,101 @@
+Pascal satırının seçilen tabana neden sığdığı
+Satırın hanelerinin tabana neden sığdığını ve satır numarasının ortayı neden böldüğünü açıklıyorum.
+Bu dosyada veri sütunları yerine kanıt cümleleri vardır. T1, T2 ve T3 cümlelerin adlarıdır.
+Pascal satırları 0. satırdaki 1 ile başlar. Sonraki satırların uçları 1, içleri komşu toplamlarıdır.
+C(n,k) n. satırda 0 ile sayılan k konumundaki hanedir. Bu hanelere binom katsayısı denir.
+Aşağıdaki p = 7 örneğini okurum. p üs, M = 127 taban, n = 9 satır, x = 4 soldaki orta konumdur.
+Orta 126 = 9·14 olur. 126 < 127 olduğundan tabana sığar. Bütün satırın değeri 128^9 = 2^63 olur.
+Cat_x, C(2x,x)/(x+1) ile hesaplanan Katalan sayısıdır. Burada Cat_4 = 14, yani 126'yı 9'a bölünce kalan çarpandır.
+! ile gösterilen faktöriyel, pozitif tamsayıları verilen sayıya kadar çarpar. floor aşağı yuvarlama demektir.
+Legendre formülü bu çarpımlarda bir asal çarpanın kaç kez bulunduğunu bölmeyle sayar.
+Kanıtlar hanelerin okunmasını doğrular, asallığı sınamaz. Aramayı hızlandırıp hızlandırmadığı AÇIK kalır.
+Aşağıdaki ölçüm notları kaynağın denetimleridir. O büyük hesapları yeniden çalıştırmadım.
+
+TANIMLAR
+--------
+p     tek Mersenne üssü (p >= 3).
+M     M = 2^p - 1.   taban.
+n     n = p + 2.     satır no. p tek olduğundan n tek.
+x     x = (p + 1)/2, yani n = 2x + 1.
+C(n,k) binom, n. satırın soldan k. sayısı.
+orta  C(n,x). n tek olduğu için iki eş orta var (C(n,x) = C(n,x+1)).
+Cat_x Katalan sayısı = C(2x,x)/(x+1).
+
+ÜÇ TEOREM
+---------
+T1 (değer)    Σ_{k=0..n} C(n,k) · M^(n-k) = (M+1)^n = 2^(p·n)       kanıtlı
+T2 (temizlik) p >= 7 tek ise orta < M. Yani her hane tabana sığar,    kanıtlı
+              satır elde olmadan hane hane okunur.
+T3 (orta)     C(2x+1, x) = (2x+1) · Cat_x                              kanıtlı
+              Mersenne satırında.  orta = (p+2) · Cat_((p+1)/2)
+
+T1 İSPAT
+  Binom teoremi (b+1)^n = Σ C(n,k) b^(n-k), her b için. b = M alınır,
+  M+1 = 2^p olduğundan (M+1)^n = 2^(p·n).
+
+T2 İSPAT  (n tek, n = 2x+1, n >= 9)
+  İddia. C(n,x) < 2^(n-2) - 1.   (p = n-2 olduğundan sağ taraf tam M.)
+  Adım 0.  n = 9. C(9,4) = 126 < 2^7 - 1 = 127.  Doğru.
+  Adım 1.  n'den n+2'ye oran.
+           C(2x+3, x+1) / C(2x+1, x) = (2x+3)(2x+2) / ((x+1)(x+2))
+                                      = 2(2x+3) / (x+2).
+  Adım 2.  2(2x+3) = 4x + 6  <  4x + 8 = 4(x+2),  yani oran < 4.
+  Adım 3.  Tümevarım. C(n,x) < 2^(n-2) - 1 ise
+           C(n+2, x+1) < 4·(2^(n-2) - 1) = 2^n - 4 < 2^n - 1.
+           Sağ taraf (n+2) için 2^((n+2)-2) - 1. İddia n+2 için de doğru.
+  Sonuç. n tek, n >= 9 için orta, M'den küçük. Orta satırın en büyüğü,
+         dolayısıyla bütün haneler M'den küçük.
+  Not.   p = 3, 5 için bu tutmaz (n = 5. orta 10 > 7;  n = 7. 35 > 31).
+         Adım 0 yalnız n = 9'dan başlar. Bu tablo ile uyuşuyor.
+
+T3 İSPAT
+  (a) C(2x+1, x) = (2x+1)! / ( x! · (x+1)! )                  [binom tanımı]
+  (b) (2x+1)! = (2x+1) · (2x)!                                [faktöriyel]
+  (c) C(2x+1, x) = (2x+1) · (2x)! / ( x! · (x+1)! )
+  (d) (2x)! / ( x! · (x+1)! ) = C(2x,x) / (x+1) = Cat_x       [Katalan tanımı]
+  (e) Cat_x tam sayıdır.  C(2x,x) - C(2x,x+1) = C(2x,x) · (1 - x/(x+1))
+                                              = C(2x,x)/(x+1).
+  (c) ve (d)'den C(2x+1,x) = (2x+1) · Cat_x.
+  SONUÇ.  n = p + 2 orta hanenin bir çarpanıdır. 2. hane (= n) ortayı böler.
+
+ÖRNEK p = 7
+  n = 9, x = 4.  Cat_4 = C(8,4)/5 = 70/5 = 14.
+  orta = 9 · 14 = 126.  Doğrudan C(9,4) = 126.   Eşit.
+  Satır (taban 127).  1 9 36 84 126 126 84 36 9 1
+  Değer. 128^9 = 2^63.   126 < 127 (T2).
+  Çarpanlar. 126 = 2 · 3^2 · 7  =  (9 = 3^2)  ×  (14 = 2 · 7).
+
+ÖRNEK p = 13
+  n = 15, x = 7.  Cat_7 = 429.   orta = 15 · 429 = 6435.  C(15,7) = 6435.
+  6435 = 3^2 · 5 · 11 · 13  =  (15 = 3 · 5)  ×  (429 = 3 · 11 · 13).
+
+HANEDEN HANEYE
+  R_0 = 1        R_(k+1) = R_k · (n - k) / (k + 1)
+  Önceki satır.  C(n-1, k) = C(n,k) · (n - k) / n
+
+ÇARPANLAMA (Legendre; büyük sayıya dokunmadan)
+  q asalının orta hanedeki üssü.
+      e_q = v_q(n!) - v_q(x!) - v_q((n-x)!),   v_q(m!) = ⌊m/q⌋ + ⌊m/q²⌋ + …
+  (p+3)/2'den büyük, n'ye kadar her asal q ortada üs 1 ile görünür. (p+3)/2 asalsa
+  o asal ortada HİÇ yok (üs 0).   Kanıtlı. Ayrıca p ≤ 3000 tek asallarda denendi, aykırı durum sayısı 0.
+  İspat. n = 2x+1, n-x = x+1 = (p+3)/2.
+    q > x+1 . q, n!'i bir kez böler (q <= n < 2q). x!'i ve (x+1)!'i bölmez
+              (q > x+1). Üs = 1 - 0 - 0 = 1.
+    q = x+1 . q, (x+1)!'i bir kez böler. Üs = 1 - 0 - 1 = 0.
+  Örnek p = 7. x+1 = 5 asal, 126 = 2·3^2·7'de 5 yok.  Aynısı p = 19, 31, 1279,
+  2203, 4423'te de olur.
+
+HESAP
+  52 Mersenne üssü (p = 2..136279841) için orta hane gmpy2 ile hesaplandı.
+  Orta = n · Cat_x. p = 3..136279841 arası 51 satırda 0 hata.
+  Orta < M. p = 7..136279841 arası hepsinde doğru (T2 ile zaten kanıtlı).
+  Tablolar. middle_digits.txt, middle_digits_factored.txt
+  Üs listesi: ilk 20 Lucas-Lehmer ile doğrulandı; 21-52 GIMPS'in genel listesinden,
+  yeniden koşturulmadı.
+
+DÜRÜST DURUM
+  T1, T2, T3 bilinen araçlarla kanıtlı. T3 (C(2x+1,x) = (2x+1)·Cat_x)
+  literatürde standart bir kimlik. Bunun eklediği şey, Mersenne üssünden
+  n = p + 2 satırını ve tabanı M seçmek. Bunun Mersenne avına hız kazandırıp
+  kazandırmadığı [AÇIK]. Asallık hakkında bilgi vermiyor
+  (M_11 = 23·89 aynı sonucu verir).

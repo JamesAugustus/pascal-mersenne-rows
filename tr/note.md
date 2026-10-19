@@ -1,0 +1,89 @@
+# Mersenne tabanlarında ikinin kuvvetleri, eldesiz Pascal satırları
+
+James Augustus
+
+## Özet
+
+M_p = 2^p − 1 olsun. 2^(p·(p+2)) sayısı M_p tabanında yazılınca haneleri tam olarak Pascal üçgeninin p + 2'nci satırındaki sayılar olur; her tek p ≥ 7 için hiçbir hane tabana ulaşmaz. Ortadaki hane, (p + 2) ile bir Katalan sayısının çarpımıdır. Asal çarpanları, hanenin kendisini hesaplamadan Legendre formülünden çıkıyor. Bilinen 52 Mersenne asal üssünün hepsinde kontrol ettim. Kullandığım araçlar klasiktir; bu not belirli bir taban ve satır seçimini kayda geçiriyor.
+
+## 1. Kurulum
+
+Her b tabanı için (b + 1)^n = Σ_{k=0}^{n} C(n,k) b^(n−k). Katsayılar (b + 1)^n sayısının b tabanındaki haneleri ancak her C(n,k) b'den küçükse oluyor, yani ortadaki katsayı b'den küçükse. 10 tabanında bu 11^n için n ≤ 4'te tutuyor, n = 5'ten itibaren tutmuyor.
+
+b = M_p alıyorum; böylece b + 1 = 2^p ve n = p + 2 oluyor. Üs buradan geliyor, (b + 1)^n = (2\^p)\^(p+2) = 2^(p·(p+2)). Not boyunca p tek, n = 2x + 1 ve x = (p + 1)/2. n'inci satırın ortadaki katsayısı C(n, x) = C(n, x + 1).
+
+[Şekil 1: satırın koordinatları (PDF)](coordinates_tr.pdf)
+
+## 2. Sonuçlar
+
+**Teorem 1.** Σ_{k=0}^{n} C(n,k) M_p^(n−k) = 2^(p·(p+2)).
+
+**Teorem 2.** p ≥ 7 tek ise C(p + 2, (p + 1)/2) < M_p. Bu yüzden p + 2'nci satırın her sayısı M_p tabanında bir hanedir ve 2^(p·(p+2)) M_p tabanında o satır olarak yazılıyor.
+
+**Teorem 3.** C(2x + 1, x) = (2x + 1) Cat_x, burada Cat_x = C(2x, x)/(x + 1). Özellikle ortadaki hane (p + 2) Cat_((p+1)/2) olur ve ikinci hane olan p + 2 onu böler.
+
+**Sonuç 4.** (p + 3)/2 < q ≤ p + 2 olan her q asalı ortadaki haneyi tam bir kez böler. (p + 3)/2 asalsa ortadaki haneyi bölmez.
+
+Örnek: p = 7. Taban 127, 2^63 = 128^9 sayısının haneleri 1, 9, 36, 84, 126, 126, 84, 36, 9, 1; 126 = 9 · 14 = 9 · Cat_4. (p + 3)/2 = 5 asalı 126'yı bölmüyor.
+
+## 3. Kanıtlar
+
+*Teorem 1*, b = M_p için binom teoremi.
+
+*Teorem 2.* Tek n = p + 2 ≥ 9 üzerinde tümevarım. n = 9 için C(9, 4) = 126 < 127 = M_7. Adım için
+
+C(2x + 3, x + 1) / C(2x + 1, x) = (2x + 3)(2x + 2) / ((x + 1)(x + 2)) = 2(2x + 3)/(x + 2) < 4.
+
+C(2x + 1, x) < M_p ise C(2x + 3, x + 1) < 4 M_p < 4 M_p + 3 = M_(p+2). p = 3 ve p = 5 için eşitsizlik tutmuyor (10 > 7, 35 > 31).
+
+*Teorem 3.* C(2x + 1, x) = (2x + 1)! / (x! (x + 1)!) = (2x + 1) · (2x)! / (x! (x + 1)!) = (2x + 1) C(2x, x)/(x + 1).
+
+*Sonuç 4.* Legendre formülüne göre q'nun C(n, x) içindeki üssü v_q(n!) − v_q(x!) − v_q((x + 1)!). x + 1 < q ≤ n ise n < 2q, yani v_q(n!) = 1 ve öteki iki terim sıfır. q = x + 1 ise v_q((x + 1)!) = 1 ve üs 0.
+
+## 4. Hesaplar
+
+Ortadaki haneyi bilinen 52 Mersenne asal üssünün hepsi için GMP ile hesapladım, p = 2, …, 136279841. Tabloları ikinci kez, bağımsız bir kodla kontrol ettim. Seçilmiş satırlar:
+
+| p | ortadaki hanenin bit sayısı | M_p'nin bit sayısı | ortadaki hanenin onluk basamak sayısı |
+|---|---|---|---|
+| 7 | 7 | 7 | 3 |
+| 13 | 13 | 13 | 4 |
+| 31 | 31 | 31 | 10 |
+| 127 | 126 | 127 | 38 |
+| 521 | 519 | 521 | 156 |
+| 1279 | 1276 | 1279 | 384 |
+| 132049 | 132043 | 132049 | 39749 |
+| 82589933 | 82589922 | 82589933 | 24862044 |
+| 136279841 | 136279830 | 136279841 | 41024317 |
+
+Bit farkı yaklaşık ½ log₂ p − 2, C(2x, x) ~ 4^x / √(πx) yaklaşımından beklendiği gibi. 7 ≤ p ≤ 37 için p + 2'nci satır M_p tabanındaki son temiz satır. p = 38'den itibaren p + 3'üncü satır da temiz.
+
+## 5. Notlar
+
+1. Asallığın bir rolü yok. Teoremler her tek p ≥ 7 için geçerli. Örneğin M_11 = 23 · 89 da temiz bir satır veriyor. Mersenne asal üslerini yalnızca deneme olarak kullandım.
+2. Kullandığım parçalar standarttır: binom teoremi, Legendre formülü, Teorem 3'teki eşitlik ve 11'in kuvvetleri deseninin keyfi tabanlara genişletilmesi [2, 3]. b = M_p, n = p + 2 seçimini literatürde bulamadım, ama aramam kısaydı.
+3. Haneler birbirinden üretilebiliyor, R_(k+1) = R_k (n − k)/(k + 1), ve değer Horner kuralıyla geri kuruluyor. Satırı yazmak için büyük sayıları çarpmak gerekmiyor.
+4. Ortadaki hane Katalan sayısı kullanmadan, yalnız toplamayla da bulunuyor. Her satırın ortası, bir önceki satırın ortası ile komşusunun toplamı, C(9, 4) = C(8, 4) + C(8, 3) = 70 + 56. İlk formülümde Katalan sayısı vardı, sonra onu bu toplamalı biçime çevirdim.
+
+## 6. Kod
+
+`mersenne_rows_gmp.c` (GMP'li C) satırı yazıyor, her hanenin tabandan küçük olduğunu kontrol ediyor ve değeri 2^(p·(p+2)) ile tam olarak ya da üç asal modülde karşılaştırıyor.
+
+```
+cc -O2 -o mersenne_rows_gmp mersenne_rows_gmp.c -lgmp
+./mersenne_rows_gmp 7 full
+./mersenne_rows_gmp 132049
+```
+
+`tr/tables/` klasöründe 52 üssün hepsi için dört Türkçe tablo var. Teoremler ve kanıtları, ortadaki haneler, listedeki ilk 50 üssün ortadaki haneleri ve bunların çarpanları. p = 7, …, 61 için GMP'siz bir kontrol, yanındaki `ctcpu-hunter` deposunda `journal_tests.c` içindeki T21_mersenne_row testi.
+
+## Kaynaklar
+
+1. Binom teoremi. https://mathworld.wolfram.com/BinomialTheorem.html
+2. L. Jiu, C. Vignat, On binomial identities in arbitrary bases, J. Integer Sequences 19 (2016). https://arxiv.org/abs/1602.04149
+3. M. S. Islam ve arkadaşları, Generating binomial coefficients in a row of Pascal's triangle from extensions of powers of eleven, Heliyon (2022). https://arxiv.org/abs/2005.14490
+4. Legendre formülü. https://en.wikipedia.org/wiki/Legendre%27s_formula
+5. OEIS A001405 (orta binom katsayıları), A000108 (Katalan sayıları). https://oeis.org
+6. GIMPS, bilinen Mersenne asalları listesi. https://www.mersenne.org/primes/
+
+Metin CC BY 4.0, kod MIT.

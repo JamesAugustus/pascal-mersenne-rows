@@ -1,0 +1,267 @@
+Listedeki ilk elli üssün orta haneleri
+Her orta hanenin sayı değerini, asal çarpanlarını ve sekizlik yazımını veriyorum.
+Pascal satırlarının uçlarında 1, içlerinde komşu toplamları vardır. 0. satır yalnız 1 içerir.
+p, M_p = 2^p − 1 sayısındaki üs, n = p+2 satır, h = floor(n/2) orta konumdur.
+C(n,h) konumları 0 ile sayınca bu hanedir. floor aşağı yuvarlama demektir.
+#4 kaydını okurum. Liste sırası 4, p = 7, n = 9, h = 4 olur. C(9,4) orta haneyi adlandırır.
+Onluk değer 126 olur. Sekizlik, yani 8 tabanındaki yazım 176_8 = 1·64 + 7·8 + 6 = 126 olur.
+Çarpanlar 2·3^2·7 = 126 verir. Asal, birden büyük olup yalnız kendisine ve 1'e bölünen sayıdır.
+p <= 127 için değerin ve çarpanların tamamını veririm. Daha büyük kayıtlarda onluk ve sekizlik basamak sayılarıyla bit sayısı vardır.
+Ayrıca 17'ye kadarki asal çarpanları ve bunlar çıkarıldıktan sonra kalan çarpımın bit sayısını veririm. Bu bit sayısı kesindir.
+Sekizlik önizlemede ilk ve son 12 basamak gösterilir. Aradaki sayı, gösterilmeyen basamakların sayısıdır.
+Böylece milyonlarca rakamı yazmadan büyüklük ve çarpanları karşılaştırırım. Bunlar asallık kanıtı değildir.
+
+#1  p=2  n=4  h=2   C(4,2)
+   onluk . 6
+   sekizlik . 6_8
+   çarpanlar . 2 · 3
+
+#2  p=3  n=5  h=2   C(5,2)
+   onluk . 10
+   sekizlik . 12_8
+   çarpanlar . 2 · 5
+
+#3  p=5  n=7  h=3   C(7,3)
+   onluk . 35
+   sekizlik . 43_8
+   çarpanlar . 5 · 7
+
+#4  p=7  n=9  h=4   C(9,4)
+   onluk . 126
+   sekizlik . 176_8
+   çarpanlar . 2 · 3^2 · 7
+
+#5  p=13  n=15  h=7   C(15,7)
+   onluk . 6435
+   sekizlik . 14443_8
+   çarpanlar . 3^2 · 5 · 11 · 13
+
+#6  p=17  n=19  h=9   C(19,9)
+   onluk . 92378
+   sekizlik . 264332_8
+   çarpanlar . 2 · 11 · 13 · 17 · 19
+
+#7  p=19  n=21  h=10   C(21,10)
+   onluk . 352716
+   sekizlik . 1260714_8
+   çarpanlar . 2^2 · 3 · 7 · 13 · 17 · 19
+
+#8  p=31  n=33  h=16   C(33,16)
+   onluk . 1166803110
+   sekizlik . 10543000246_8
+   çarpanlar . 2 · 3^3 · 5 · 11 · 19 · 23 · 29 · 31
+
+#9  p=61  n=63  h=31   C(63,31)
+   onluk . 916312070471295267
+   sekizlik . 62673117444766020443_8
+   çarpanlar . 3^2 · 7^2 · 11 · 17 · 19 · 37 · 41 · 43 · 47 · 53 · 59 · 61
+
+#10  p=89  n=91  h=45   C(91,45)
+   onluk . 205397724721029574666088520
+   sekizlik . 124746521737427154661035370110_8
+   çarpanlar . 2^3 · 3^2 · 5 · 7^2 · 13 · 17 · 29 · 47 · 53 · 59 · 61 · 67 · 71 · 73 · 79 · 83 · 89
+
+#11  p=107  n=109  h=54   C(109,54)
+   onluk . 49263609265046928387789436527216
+   sekizlik . 115562647175024056226271326361121160_8
+   çarpanlar . 2^4 · 3 · 7 · 19 · 29 · 31 · 59 · 61 · 67 · 71 · 73 · 79 · 83 · 89 · 97 · 101 · 103 · 107 · 109
+
+#12  p=127  n=129  h=64   C(129,64)
+   onluk . 47533812913980349072792166510047556550
+   sekizlik . 436052675274257510250402746642727246071706_8
+   çarpanlar . 2 · 3^2 · 5^2 · 11^2 · 17 · 23 · 37 · 41 · 43 · 67 · 71 · 73 · 79 · 83 · 89 · 97 · 101 · 103 · 107 · 109 · 113 · 127
+
+#13  p=521  n=523  h=261   C(523,261)
+   onluk hane sayısı. 156   bit. 519   sekizlik hane sayısı. 173
+   çarpanlar . 2^2 · 3 · 7 · 11 · 13 · 17 · kalan   (kalan = 501 bit)
+   sekizlik . 435315677305_8 …(149 hane)… 121744034524_8
+
+#14  p=607  n=609  h=304   C(609,304)
+   onluk hane sayısı. 182   bit. 605   sekizlik hane sayısı. 202
+   çarpanlar . 2^3 · 3^3 · 7^2 · 11^2 · 13 · 17 · kalan   (kalan = 576 bit)
+   sekizlik . 204211447365_8 …(178 hane)… 541113173350_8
+
+#15  p=1279  n=1281  h=640   C(1281,640)
+   onluk hane sayısı. 384   bit. 1276   sekizlik hane sayısı. 426
+   çarpanlar . 2^2 · 3^5 · 5 · 7^2 · 13 · 17 · kalan   (kalan = 1250 bit)
+   sekizlik . 133204104747_8 …(402 hane)… 553521764464_8
+
+#16  p=2203  n=2205  h=1102   C(2205,1102)
+   onluk hane sayısı. 663   bit. 2200   sekizlik hane sayısı. 734
+   çarpanlar . 2^5 · 3^7 · 5^3 · 7^2 · 11 · 13^3 · 17^2 · kalan   (kalan = 2148 bit)
+   sekizlik . 105445763305_8 …(710 hane)… 151774600640_8
+
+#17  p=2281  n=2283  h=1141   C(2283,1141)
+   onluk hane sayısı. 686   bit. 2278   sekizlik hane sayısı. 760
+   çarpanlar . 2^5 · 3^5 · 5^2 · 11^2 · 13^3 · 17 · kalan   (kalan = 2238 bit)
+   sekizlik . 104300444270_8 …(736 hane)… 771310361340_8
+
+#18  p=3217  n=3219  h=1609   C(3219,1609)
+   onluk hane sayısı. 968   bit. 3213   sekizlik hane sayısı. 1071
+   çarpanlar . 2^4 · 3^6 · 5^3 · 7^3 · 13^3 · 17^2 · kalan   (kalan = 3165 bit)
+   sekizlik . 714553715606_8 …(1047 hane)… 103035242420_8
+
+#19  p=4253  n=4255  h=2127   C(4255,2127)
+   onluk hane sayısı. 1279   bit. 4249   sekizlik hane sayısı. 1417
+   çarpanlar . 2^2 · 3^4 · 5^2 · 7 · 11^2 · 13^3 · kalan   (kalan = 4215 bit)
+   sekizlik . 144136654023_8 …(1393 hane)… 722502255634_8
+
+#20  p=4423  n=4425  h=2212   C(4425,2212)
+   onluk hane sayısı. 1331   bit. 4419   sekizlik hane sayısı. 1473
+   çarpanlar . 2^4 · 3^3 · 5^5 · 7 · 11 · 17 · kalan   (kalan = 4388 bit)
+   sekizlik . 610760636001_8 …(1449 hane)… 672022323420_8
+
+#21  p=9689  n=9691  h=4845   C(9691,4845)
+   onluk hane sayısı. 2916   bit. 9685   sekizlik hane sayısı. 3229
+   çarpanlar . 2^7 · 3^4 · 5^4 · 7 · 11^2 · 13^2 · 17^2 · kalan   (kalan = 9637 bit)
+   sekizlik . 102310326071_8 …(3205 hane)… 017217240200_8
+
+#22  p=9941  n=9943  h=4971   C(9943,4971)
+   onluk hane sayısı. 2992   bit. 9937   sekizlik hane sayısı. 3313
+   çarpanlar . 2^6 · 3^2 · 5^4 · 11 · kalan   (kalan = 9915 bit)
+   sekizlik . 101426753277_8 …(3289 hane)… 112144272500_8
+
+#23  p=11213  n=11215  h=5607   C(11215,5607)
+   onluk hane sayısı. 3374   bit. 11208   sekizlik hane sayısı. 3736
+   çarpanlar . 2^6 · 3^4 · 5^4 · 11 · 13 · 17 · kalan   (kalan = 11176 bit)
+   sekizlik . 755566634032_8 …(3712 hane)… 641144570100_8
+
+#24  p=19937  n=19939  h=9969   C(19939,9969)
+   onluk hane sayısı. 6000   bit. 19932   sekizlik hane sayısı. 6644
+   çarpanlar . 2^7 · 3^5 · 5^4 · 7 · 11 · 13^3 · kalan   (kalan = 19890 bit)
+   sekizlik . 562230655661_8 …(6620 hane)… 523124065200_8
+
+#25  p=21701  n=21703  h=10851   C(21703,10851)
+   onluk hane sayısı. 6531   bit. 21696   sekizlik hane sayısı. 7232
+   çarpanlar . 2^5 · 3^8 · 5^2 · 7^3 · 11^3 · 13^2 · 17 · kalan   (kalan = 21643 bit)
+   sekizlik . 542735121773_8 …(7208 hane)… 777410575740_8
+
+#26  p=23209  n=23211  h=11605   C(23211,11605)
+   onluk hane sayısı. 6985   bit. 23204   sekizlik hane sayısı. 7735
+   çarpanlar . 2^7 · 3^7 · 5^4 · 7^4 · 11^3 · 13^2 · 17 · kalan   (kalan = 23143 bit)
+   sekizlik . 253465447741_8 …(7711 hane)… 301606447200_8
+
+#27  p=44497  n=44499  h=22249   C(44499,22249)
+   onluk hane sayısı. 13394   bit. 44491   sekizlik hane sayısı. 14831
+   çarpanlar . 2^8 · 3^4 · 5 · 7^2 · 11^4 · 13^3 · 17^3 · kalan   (kalan = 44432 bit)
+   sekizlik . 173740550432_8 …(14807 hane)… 417053016400_8
+
+#28  p=86243  n=86245  h=43122   C(86245,43122)
+   onluk hane sayısı. 25960   bit. 86237   sekizlik hane sayısı. 28746
+   çarpanlar . 2^7 · 3^3 · 5^7 · 7^3 · 11 · 13^2 · 17^3 · kalan   (kalan = 86177 bit)
+   sekizlik . 262033100766_8 …(28722 hane)… 670406656200_8
+
+#29  p=110503  n=110505  h=55252   C(110505,55252)
+   onluk hane sayısı. 33263   bit. 110497   sekizlik hane sayısı. 36833
+   çarpanlar . 2^10 · 3^4 · 5^4 · 7 · 11^3 · 13^2 · 17 · kalan   (kalan = 110446 bit)
+   sekizlik . 116514434114_8 …(36809 hane)… 351647656000_8
+
+#30  p=132049  n=132051  h=66025   C(132051,66025)
+   onluk hane sayısı. 39749   bit. 132043   sekizlik hane sayısı. 44015
+   çarpanlar . 2^6 · 3^3 · 5^2 · 7^2 · 11^3 · 13^2 · 17^2 · kalan   (kalan = 131996 bit)
+   sekizlik . 107745147613_8 …(43991 hane)… 373273500500_8
+
+#31  p=216091  n=216093  h=108046   C(216093,108046)
+   onluk hane sayısı. 65048   bit. 216084   sekizlik hane sayısı. 72028
+   çarpanlar . 2^8 · 3^6 · 5^4 · 7 · 11^2 · 13 · 17^3 · kalan   (kalan = 216032 bit)
+   sekizlik . 701743114060_8 …(72004 hane)… 463373161400_8
+
+#32  p=756839  n=756841  h=378420   C(756841,378420)
+   onluk hane sayısı. 227829   bit. 756831   sekizlik hane sayısı. 252277
+   çarpanlar . 2^9 · 3^5 · 5^3 · 7^3 · 11^2 · 17 · kalan   (kalan = 756788 bit)
+   sekizlik . 740661656521_8 …(252253 hane)… 455523553000_8
+
+#33  p=859433  n=859435  h=429717   C(859435,429717)
+   onluk hane sayısı. 258713   bit. 859425   sekizlik hane sayısı. 286475
+   çarpanlar . 2^9 · 3^2 · 5^7 · 7^6 · 11^2 · 13^2 · 17^2 · kalan   (kalan = 859358 bit)
+   sekizlik . 703170366446_8 …(286451 hane)… 464562141000_8
+
+#34  p=1257787  n=1257789  h=628894   C(1257789,628894)
+   onluk hane sayısı. 378630   bit. 1257779   sekizlik hane sayısı. 419260
+   çarpanlar . 2^10 · 3^7 · 5^2 · 7^4 · 11^2 · 13^2 · 17^2 · kalan   (kalan = 1257720 bit)
+   sekizlik . 272377255316_8 …(419236 hane)… 124614672000_8
+
+#35  p=1398269  n=1398271  h=699135   C(1398271,699135)
+   onluk hane sayısı. 420919   bit. 1398261   sekizlik hane sayısı. 466087
+   çarpanlar . 2^6 · 3^7 · 5^5 · 7^4 · 11^3 · 13^3 · 17 · kalan   (kalan = 1398195 bit)
+   sekizlik . 541607262727_8 …(466063 hane)… 107577734100_8
+
+#36  p=2976221  n=2976223  h=1488111   C(2976223,1488111)
+   onluk hane sayısı. 895930   bit. 2976212   sekizlik hane sayısı. 992071
+   çarpanlar . 2^10 · 3^7 · 5^4 · 7^6 · 11^3 · 17^2 · kalan   (kalan = 2976147 bit)
+   sekizlik . 362366066410_8 …(992047 hane)… 100151432000_8
+
+#37  p=3021377  n=3021379  h=1510689   C(3021379,1510689)
+   onluk hane sayısı. 909523   bit. 3021368   sekizlik hane sayısı. 1007123
+   çarpanlar . 2^8 · 3^7 · 5^5 · 7^4 · 11 · 13^4 · kalan   (kalan = 3021308 bit)
+   sekizlik . 360522676407_8 …(1007099 hane)… 064014534400_8
+
+#38  p=6972593  n=6972595  h=3486297   C(6972595,3486297)
+   onluk hane sayısı. 2098957   bit. 6972584   sekizlik hane sayısı. 2324195
+   çarpanlar . 2^10 · 3^5 · 5^6 · 7^4 · 11^2 · 13^4 · 17^2 · kalan   (kalan = 6972511 bit)
+   sekizlik . 236327426770_8 …(2324171 hane)… 632205352000_8
+
+#39  p=13466917  n=13466919  h=6733459   C(13466919,6733459)
+   onluk hane sayısı. 4053943   bit. 13466907   sekizlik hane sayısı. 4488969
+   çarpanlar . 2^12 · 3^5 · 5^5 · 7^3 · 11^5 · 13^3 · 17^4 · kalan   (kalan = 13466823 bit)
+   sekizlik . 707760314415_8 …(4488945 hane)… 750136470000_8
+
+#40  p=20996011  n=20996013  h=10498006   C(20996013,10498006)
+   onluk hane sayısı. 6320426   bit. 20996001   sekizlik hane sayısı. 6998667
+   çarpanlar . 2^12 · 3^7 · 5^3 · 7^3 · 11^2 · 13 · 17^3 · kalan   (kalan = 20995940 bit)
+   sekizlik . 555131641410_8 …(6998643 hane)… 172326730000_8
+
+#41  p=24036583  n=24036585  h=12018292   C(24036585,12018292)
+   onluk hane sayısı. 7235730   bit. 24036573   sekizlik hane sayısı. 8012191
+   çarpanlar . 2^13 · 3^14 · 5^5 · 7^3 · 11^6 · 13 · 17^2 · kalan   (kalan = 24036485 bit)
+   sekizlik . 525230404047_8 …(8012167 hane)… 576711360000_8
+
+#42  p=25964951  n=25964953  h=12982476   C(25964953,12982476)
+   onluk hane sayısı. 7816226   bit. 25964941   sekizlik hane sayısı. 8654981
+   çarpanlar . 2^10 · 3^7 · 5^4 · 7^4 · 11^4 · 13^3 · 17 · kalan   (kalan = 25964870 bit)
+   sekizlik . 122060456266_8 …(8654957 hane)… 117201306000_8
+
+#43  p=30402457  n=30402459  h=15201229   C(30402459,15201229)
+   onluk hane sayısı. 9152049   bit. 30402447   sekizlik hane sayısı. 10134149
+   çarpanlar . 2^16 · 3^10 · 5^7 · 7 · 11^3 · 13 · 17^2 · kalan   (kalan = 30402374 bit)
+   sekizlik . 457360452175_8 …(10134125 hane)… 366476200000_8
+
+#44  p=32582657  n=32582659  h=16291329   C(32582659,16291329)
+   onluk hane sayısı. 9808354   bit. 32582647   sekizlik hane sayısı. 10860883
+   çarpanlar . 2^9 · 3^9 · 5^5 · 7^4 · 11^3 · 13 · 17^3 · kalan   (kalan = 32582574 bit)
+   sekizlik . 111222036374_8 …(10860859 hane)… 663224237000_8
+
+#45  p=37156667  n=37156669  h=18578334   C(37156669,18578334)
+   onluk hane sayısı. 11185269   bit. 37156657   sekizlik hane sayısı. 12385553
+   çarpanlar . 2^16 · 3^9 · 5^5 · 7^5 · 11^4 · 13^3 · 17^2 · kalan   (kalan = 37156568 bit)
+   sekizlik . 104500576127_8 …(12385529 hane)… 232720600000_8
+
+#46  p=42643801  n=42643803  h=21321901   C(42643803,21321901)
+   onluk hane sayısı. 12837060   bit. 42643791   sekizlik hane sayısı. 14214597
+   çarpanlar . 2^11 · 3^2 · 5^4 · 7^6 · 11 · 13 · 17^3 · kalan   (kalan = 42643731 bit)
+   sekizlik . 400171310401_8 …(14214573 hane)… 165076054000_8
+
+#47  p=43112609  n=43112611  h=21556305   C(43112611,21556305)
+   onluk hane sayısı. 12978186   bit. 43112598   sekizlik hane sayısı. 14370866
+   çarpanlar . 2^10 · 3^10 · 5^2 · 7^4 · 11^2 · 13^2 · 17^2 · kalan   (kalan = 43112534 bit)
+   sekizlik . 775534220454_8 …(14370842 hane)… 224323532000_8
+
+#48  p=57885161  n=57885163  h=28942581   C(57885163,28942581)
+   onluk hane sayısı. 17425167   bit. 57885150   sekizlik hane sayısı. 19295050
+   çarpanlar . 2^13 · 3^4 · 5^5 · 7^4 · 11^5 · 13^4 · 17^2 · kalan   (kalan = 57885068 bit)
+   sekizlik . 667671221602_8 …(19295026 hane)… 750524420000_8
+
+#49  p=74207281  n=74207283  h=37103641   C(74207283,37103641)
+   onluk hane sayısı. 22338615   bit. 74207270   sekizlik hane sayısı. 24735757
+   çarpanlar . 2^9 · 3^11 · 5^8 · 7^3 · 11^4 · 13^3 · 17 · kalan   (kalan = 74207188 bit)
+   sekizlik . 302174560143_8 …(24735733 hane)… 227174423000_8
+
+#50  p=77232917  n=77232919  h=38616459   C(77232919,38616459)
+   onluk hane sayısı. 23249422   bit. 77232906   sekizlik hane sayısı. 25744302
+   çarpanlar . 2^12 · 3^9 · 5^5 · 7^4 · 11^4 · 13^4 · 17^2 · kalan   (kalan = 77232820 bit)
+   sekizlik . 574632320301_8 …(25744278 hane)… 440177130000_8
+
+Kontrol
+Küçük p'lerde sekizlik yazım geri çevrildi, çarpanlar geri çarpıldı ve C(n,h) ile karşılaştırıldı, hepsi eşit çıktı.
+Büyük p'lerde sayı gmpy2 ile hesaplandı, baştaki ve sondaki 12 sekizlik hane doğrudan sayıdan alındı.
+Üs listesi: ilk 20 Lucas-Lehmer ile doğrulandı; 21-50 GIMPS listesinden alındı.
