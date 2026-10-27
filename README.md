@@ -6,9 +6,9 @@ rows in Mersenne bases. The proof is in the mathematical note; Python and
 C programs are included to reproduce examples.
 [Türkçe](tr/README.md)
 
-## Consolidated technical study
+## Technical text
 
-The main technical text and subsequent additions are collected in one reading structure. [Türkçe PDF](yayin/PASCAL_MERSENNE_NP_TR.pdf), [English PDF](yayin/PASCAL_MERSENNE_NP_EN.pdf), [Markdown](yayin/PASCAL_MERSENNE_NP_EN.md).
+[Main text](md/PASCAL_MERSENNE_NP.md) and [PDF](pdf/PASCAL_MERSENNE_NP.pdf).
 
 James Augustus. [ORCID: 0009-0002-7286-7730](https://orcid.org/0009-0002-7286-7730).
 
@@ -34,7 +34,7 @@ I call the index of the last such row N(p). For example, when p = 38, the first 
 
 N(p) continues the same study. It extends the boundary question already discussed in the first note and examines how the last valid row changes with p. Proved results are distinguished from examples checked by computation. The proposed short formula for every threshold remains unproved.
 
-The [step-by-step explanation](PASCAL_AND_NP_STEP_BY_STEP.md) ([English PDF](PASCAL_AND_NP_STEP_BY_STEP.pdf)) includes ten worked examples, from base 7 to p = 10^100, showing what N(p) is useful for. A matching [Turkish explanation](PASCAL_VE_NP_ADIM_ADIM.md) ([PDF](PASCAL_VE_NP_ADIM_ADIM.pdf)) is available. Definitions, the same examples and detailed proofs are in the [N(p) mathematical note](NP_CARRY_FREE_ROW_BOUND.pdf) ([text](NP_CARRY_FREE_ROW_BOUND.md)).
+The [step-by-step explanation](md/PASCAL_AND_NP_STEP_BY_STEP.md) ([English PDF](pdf/PASCAL_AND_NP_STEP_BY_STEP.pdf)) includes ten worked examples, from base 7 to p = 10^100, showing what N(p) is useful for. Definitions, the same examples and detailed proofs are in the [N(p) mathematical note](pdf/NP_CARRY_FREE_ROW_BOUND.pdf) ([text](md/NP_CARRY_FREE_ROW_BOUND.md)).
 
 From the repository root, run `python3 -B tests/verify_np.py --quick` for a short check or `python3 -B tests/verify_np.py` for the full p ≤ 20000 and k ≤ 12 scope. The [recorded result](tests/np_verification.json) identifies that scope. Large binomial coefficients can make the full run take several minutes. Run `python3 -B -m unittest discover -s tests -p 'test_*.py'` for the program, installer and verifier regression tests.
 
@@ -52,8 +52,8 @@ are valid digits. The value comparison checks the implementation of an
 identity already given by the binomial theorem; it is not a separate
 mathematical proof or a primality test.
 
-Formulas, proofs, and references are in the [mathematical note](note.pdf)
-([text version](note.md)). The [figure](coordinates_en.pdf) explains
+Formulas, proofs, and references are in the [mathematical note](pdf/PASCAL_MERSENNE_ROWS.pdf)
+([text version](md/PASCAL_MERSENNE_ROWS.md)). The [figure](pdf/figures/coordinates.pdf) explains
 the positions in the row.
 
 ## How to run
@@ -103,8 +103,8 @@ cc -O2 -o mersenne_rows_gmp mersenne_rows_gmp.c -lgmp
 ## Files and terms
 
 - `setup/`: installation; `tests/`: program and installation checks.
-- `tables/`: tables; `coordinates_en.pdf`: figure. Turkish versions are under `tr/`.
-- `note.md`, `note.pdf`: text and PDF versions of the mathematical note.
+- `tables/`: tables; `pdf/figures/coordinates.pdf`: figure. Turkish versions are under `tr/`.
+- `md/PASCAL_MERSENNE_ROWS.md`, `pdf/PASCAL_MERSENNE_ROWS.pdf`: text and PDF versions of the mathematical note.
 - Licenses: all source code, launchers, setup files and tests are covered by
   [MIT](LICENSE). English and Turkish documentation, PDFs, figures, tables
   and citation metadata are covered by [CC BY 4.0](LICENSE-CC-BY-4.0).

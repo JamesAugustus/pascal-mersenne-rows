@@ -402,12 +402,12 @@ The first study constructs selected carry-free number representations from Pasca
 
 ### References and terms of use
 
-[1] James Augustus. *Pascal rows in Mersenne bases*. Original note: [English text](note.md) and [English PDF](note.pdf). Repository: [pascal-mersenne-rows](https://github.com/JamesAugustus/pascal-mersenne-rows).
+[1] James Augustus. *Pascal rows in Mersenne bases*. Original note: [English text](PASCAL_MERSENNE_ROWS.md) and [English PDF](../pdf/PASCAL_MERSENNE_ROWS.pdf). Repository: [pascal-mersenne-rows](https://github.com/JamesAugustus/pascal-mersenne-rows).
 
-[2] James Augustus. *The largest carry-free row in a Mersenne base*. N(p) extension: [English text](NP_CARRY_FREE_ROW_BOUND.md) and [English PDF](NP_CARRY_FREE_ROW_BOUND.pdf).
+[2] James Augustus. *The largest carry-free row in a Mersenne base*. N(p) extension: [English text](NP_CARRY_FREE_ROW_BOUND.md) and [English PDF](../pdf/NP_CARRY_FREE_ROW_BOUND.pdf).
 
-[3] *N(p) computational checks*. [Verifier](tests/verify_np.py). Direct scan p ≤ 20000, threshold checks k ≤ 12.
+[3] *N(p) computational checks*. [Verifier](../tests/verify_np.py). Direct scan p ≤ 20000, threshold checks k ≤ 12.
 
 [4] James Augustus. [PCCPU design note](https://github.com/JamesAugustus/ctcpu-hunter/blob/main/md/CTCPU_PARTS/PCCPU/PCCPU.md). Work distribution, core-local counters and open architectural decisions.
 
-This explanation is covered by the repository's documentation license, [CC BY 4.0](LICENSE-CC-BY-4.0). Copyright © 2026 James Augustus. The thesis-style layout describes the presentation only. This document is not described as a graduate thesis submitted to or approved by a university.
+This explanation is covered by the repository's documentation license, [CC BY 4.0](../LICENSE-CC-BY-4.0). Copyright © 2026 James Augustus. The thesis-style layout describes the presentation only. This document is not described as a graduate thesis submitted to or approved by a university.

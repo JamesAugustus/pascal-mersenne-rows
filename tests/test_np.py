@@ -47,7 +47,7 @@ class NPChecks(unittest.TestCase):
             target=Path(tmp)/'package'
             proc=subprocess.run([sys.executable,'-B',str(ROOT/'setup/install.py'),str(target)],text=True,capture_output=True)
             self.assertEqual(proc.returncode,0,proc.stdout+proc.stderr)
-            for file in ('PASCAL_VE_NP_ADIM_ADIM.md','PASCAL_VE_NP_ADIM_ADIM.pdf','NP_CARRY_FREE_ROW_BOUND.md','NP_CARRY_FREE_ROW_BOUND.pdf','tr/NP_ELDESIZ_SATIR_SINIRI.md','tr/NP_ELDESIZ_SATIR_SINIRI.pdf','tests/verify_np.py',
+            for file in ('tr/md/PASCAL_VE_NP_ADIM_ADIM.md','tr/pdf/PASCAL_VE_NP_ADIM_ADIM.pdf','md/NP_CARRY_FREE_ROW_BOUND.md','pdf/NP_CARRY_FREE_ROW_BOUND.pdf','tr/md/NP_ELDESIZ_SATIR_SINIRI.md','tr/pdf/NP_ELDESIZ_SATIR_SINIRI.pdf','tests/verify_np.py',
                          'tests/test_np.py','tests/np_verification.json'):
                 self.assertEqual((target/file).read_bytes(),(ROOT/file).read_bytes())
             proc=subprocess.run([sys.executable,'-B',str(target/'tests/verify_np.py'),'--quick'],text=True,capture_output=True,timeout=120)

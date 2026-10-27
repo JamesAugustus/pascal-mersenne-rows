@@ -6,9 +6,9 @@ Pascal satırlarıyla yazıyorum. Kanıtı matematik notunda; örneğini yeniden
 hesaplamak için Python ve C programları da üst klasörde.
 [English](../README.md)
 
-## Birleşik teknik çalışma
+## Teknik metin
 
-Ana teknik metin ve sonraki ekler tek bir okuma düzeninde sunulur. [Türkçe PDF](../yayin/PASCAL_MERSENNE_NP_TR.pdf), [English PDF](../yayin/PASCAL_MERSENNE_NP_EN.pdf), [Markdown](../yayin/PASCAL_MERSENNE_NP_TR.md).
+[Ana metin](md/PASCAL_MERSENNE_NP.md) ve [PDF](pdf/PASCAL_MERSENNE_NP.pdf).
 
 James Augustus. [ORCID: 0009-0002-7286-7730](https://orcid.org/0009-0002-7286-7730).
 
@@ -35,7 +35,7 @@ Bu sınırın satır numarasına N(p) diyorum. Örneğin p = 38 olduğunda ilk �
 
 N(p), aynı çalışmanın devamıdır. Önceki notun ele aldığı sınır sorusunu genişletir ve son geçerli satırın p değiştikçe nasıl ilerlediğini inceler. Kanıtlanan sonuçlar ile hesapla kontrol edilen örnekler ayrı verilir. Bütün eşikler için önerilen kısa formül ise henüz kanıtlanmış değildir.
 
-[Sade açıklama](../PASCAL_VE_NP_ADIM_ADIM.md) ([Türkçe PDF](../PASCAL_VE_NP_ADIM_ADIM.pdf)), 7 tabanından p = 10^100 değerine uzanan on örnekle N(p)'nin ne işe yaradığını anlatır. Aynı içeriğin [İngilizcesi](../PASCAL_AND_NP_STEP_BY_STEP.md) ([PDF](../PASCAL_AND_NP_STEP_BY_STEP.pdf)) de vardır. Tanımlar, aynı örnekler ve ayrıntılı kanıtlar [N(p) matematik notunda](NP_ELDESIZ_SATIR_SINIRI.pdf) ([metin](NP_ELDESIZ_SATIR_SINIRI.md)) bulunur.
+[Sade açıklama](md/PASCAL_VE_NP_ADIM_ADIM.md) ([Türkçe PDF](pdf/PASCAL_VE_NP_ADIM_ADIM.pdf)), 7 tabanından p = 10^100 değerine uzanan on örnekle N(p)'nin ne işe yaradığını anlatır. Tanımlar, aynı örnekler ve ayrıntılı kanıtlar [N(p) matematik notunda](pdf/NP_ELDESIZ_SATIR_SINIRI.pdf) ([metin](md/NP_ELDESIZ_SATIR_SINIRI.md)) bulunur.
 
 Deponun kökünde kısa kontrol `python3 -B tests/verify_np.py --quick`, p ≤ 20000 ve k ≤ 12 kapsamındaki tam kontrol `python3 -B tests/verify_np.py` ile çalışır. [Kayıtlı sonuç](../tests/np_verification.json) kapsamı gösterir. Büyük binom katsayıları nedeniyle tam koşu birkaç dakika sürebilir. Program, kurulum ve doğrulayıcı regresyon testleri `python3 -B -m unittest discover -s tests -p 'test_*.py'` ile çalışır.
 
@@ -53,8 +53,8 @@ hane olabildiğini inceleyebilirsin. Değer karşılaştırması, zaten binom
 teoreminden gelen eşitliğin kodda doğru hesaplandığını sınar; ayrı bir
 matematiksel kanıt veya asallık testi değildir.
 
-Formüller, kanıtlar ve kaynakça [matematik notunda](note.pdf)
-([metin biçimi](note.md)); hanelerin konumları [şekilde](coordinates_tr.pdf).
+Formüller, kanıtlar ve kaynakça [matematik notunda](pdf/PASCAL_MERSENNE_ROWS.pdf)
+([metin biçimi](md/PASCAL_MERSENNE_ROWS.md)); hanelerin konumları [şekilde](pdf/figures/coordinates.pdf).
 
 ## Nasıl çalıştırılır?
 
@@ -101,7 +101,7 @@ cc -O2 -o mersenne_rows_gmp mersenne_rows_gmp.c -lgmp
 - Üst klasördeki `setup/`: kurulum; `tests/`: program ve kurulum testleri.
 - Üst klasördeki `tables/`: İngilizce tablolar; buradaki `tables/`: Türkçe tablolar.
 - `coordinates_tr.pdf`: Türkçe şekil.
-- `note.md`, `note.pdf`: matematik notunun metin ve PDF biçimleri.
+- `md/PASCAL_MERSENNE_ROWS.md`, `pdf/PASCAL_MERSENNE_ROWS.pdf`: matematik notunun metin ve PDF biçimleri.
 - Lisanslar: tüm kaynak kodları, başlatıcılar, kurulum dosyaları ve testler
   [MIT](../LICENSE) kapsamındadır. İngilizce ve Türkçe belgeler, PDF’ler,
   şekiller, tablolar ve atıf bilgileri [CC BY 4.0](../LICENSE-CC-BY-4.0)

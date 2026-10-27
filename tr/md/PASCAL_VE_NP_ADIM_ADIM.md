@@ -402,12 +402,12 @@ Tam matematik kontrolünün komutu `python3 -B tests/verify_np.py` biçimindedir
 
 ### Kaynakça ve kullanım koşulları
 
-[1] James Augustus. *Mersenne tabanlarında Pascal satırları*. Özgün not: [Türkçe metin](tr/note.md) ve [Türkçe PDF](tr/note.pdf). Depo: [pascal-mersenne-rows](https://github.com/JamesAugustus/pascal-mersenne-rows).
+[1] James Augustus. *Mersenne tabanlarında Pascal satırları*. Özgün not: [Türkçe metin](PASCAL_MERSENNE_ROWS.md) ve [Türkçe PDF](../pdf/PASCAL_MERSENNE_ROWS.pdf). Depo: [pascal-mersenne-rows](https://github.com/JamesAugustus/pascal-mersenne-rows).
 
-[2] James Augustus. *Mersenne tabanlarında en büyük eldesiz Pascal satırı*. N(p) eki: [Türkçe metin](tr/NP_ELDESIZ_SATIR_SINIRI.md) ve [Türkçe PDF](tr/NP_ELDESIZ_SATIR_SINIRI.pdf).
+[2] James Augustus. *Mersenne tabanlarında en büyük eldesiz Pascal satırı*. N(p) eki: [Türkçe metin](NP_ELDESIZ_SATIR_SINIRI.md) ve [Türkçe PDF](../pdf/NP_ELDESIZ_SATIR_SINIRI.pdf).
 
-[3] *N(p) hesap denetimi*. [Doğrulayıcı](tests/verify_np.py). Doğrudan tarama p ≤ 20000, eşik denetimi k ≤ 12.
+[3] *N(p) hesap denetimi*. [Doğrulayıcı](../../tests/verify_np.py). Doğrudan tarama p ≤ 20000, eşik denetimi k ≤ 12.
 
 [4] James Augustus. [PCCPU tasarım notu](https://github.com/JamesAugustus/ctcpu-hunter/blob/main/tr/md/CTCPU_PARCALAR/PCCPU/PCCPU.md). İş dağıtma, çekirdeklerin yerel sayaçları ve açık mimari kararlar.
 
-Bu açıklama, deponun belge lisansı olan [CC BY 4.0](LICENSE-CC-BY-4.0) kapsamında sunulur. Telif hakkı © 2026 James Augustus. Tez düzeni, metnin sunum biçimini ifade eder. Bu belge bir üniversiteye sunulmuş veya onaylanmış lisansüstü tez olarak tanımlanmamaktadır.
+Bu açıklama, deponun belge lisansı olan [CC BY 4.0](../../LICENSE-CC-BY-4.0) kapsamında sunulur. Telif hakkı © 2026 James Augustus. Tez düzeni, metnin sunum biçimini ifade eder. Bu belge bir üniversiteye sunulmuş veya onaylanmış lisansüstü tez olarak tanımlanmamaktadır.

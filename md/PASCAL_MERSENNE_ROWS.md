@@ -12,7 +12,7 @@ For any base b, (b + 1)^n = Σ_{k=0}^{n} C(n,k) b^(n−k). The coefficients are 
 
 We take b = M_p, so that b + 1 = 2^p, and n = p + 2. This is where the exponent comes from, (b + 1)^n = `(2^p)^(p+2)` = 2^(p·(p+2)). Here p is an integer with p ≥ 2. The carry-free result applies to every integer p ≥ 7. For the odd-p results in Theorem 3 and Corollary 4, write n = 2x + 1 and x = (p + 1)/2; the two middle coefficients are C(n, x) = C(n, x + 1).
 
-[Figure 1: row coordinates (PDF)](coordinates_en.pdf)
+[Figure 1: row coordinates (PDF)](../pdf/figures/coordinates.pdf)
 
 ## 2. Results
 

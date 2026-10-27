@@ -12,7 +12,7 @@ Her b tabanı için (b + 1)^n = Σ_{k=0}^{n} C(n,k) b^(n−k). Katsayılar (b + 
 
 b = M_p alıyorum; böylece b + 1 = 2^p ve n = p + 2 oluyor. Üs buradan geliyor, (b + 1)^n = `(2^p)^(p+2)` = 2^(p·(p+2)). Burada p ≥ 2 bir tamsayıdır. Eldesiz yazım sonucu her p ≥ 7 tamsayısı için geçerlidir. Teorem 3 ve Sonuç 4'teki tek p durumu için n = 2x + 1 ve x = (p + 1)/2 alıyorum; iki orta katsayı C(n, x) = C(n, x + 1) olur.
 
-[Şekil 1: satırın koordinatları (PDF)](coordinates_tr.pdf)
+[Şekil 1: satırın koordinatları (PDF)](../pdf/figures/coordinates.pdf)
 
 ## 2. Sonuçlar
 

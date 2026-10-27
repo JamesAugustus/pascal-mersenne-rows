@@ -247,7 +247,7 @@ Pencere sayımı için T_k = 2×4^k/π yazılır. Pencerede ⌈T_k⌉ − p_k = 
 
 ## 5. Hesaplar
 
-Ekteki [doğrulayıcı](../tests/verify_np.py) ifadelerin sonlu örneklerini sınar. Deponun kökünde Python 3.10 veya sonrası yeterlidir:
+Ekteki [doğrulayıcı](../../tests/verify_np.py) ifadelerin sonlu örneklerini sınar. Deponun kökünde Python 3.10 veya sonrası yeterlidir:
 
 ```sh
 python3 -B tests/verify_np.py --quick
@@ -272,7 +272,7 @@ Karşılaştırmalar Python tamsayılarıyla yapılır. Machin özdeşliği π =
 
 Her eşik adayı için hem 2^k C(2m_k,m_k) < 4^(m_k) hem de m_k − 1'de bu sıkı eşitsizliğin sağlanmaması kontrol edilir. Tarama sınırının üstünde adayı tavan ifadesi önerir, fakat aday ancak kesin sınır kontrollerinden sonra kabul edilir. Genel üst hata sınırı, logaritmasız olarak 7×4^(D(p)−2) ≤ p biçiminde sınanır. Logaritmalar yalnız yaklaşık uç değerleri göstermek için Decimal ile hesaplanır, bir kontrolün geçmesine karar vermez.
 
-Normal aralıkta D(p), 38, 159, 646, 2601 ve 10422'de değişir. D(p) − h(p) hatası p = 7'de yaklaşık 0.270574 ile en büyük, p = 10421'de yaklaşık −0.999351 ile en küçüktür. [Kayıtlı sonuç](../tests/np_verification.json), gerçek koşu kapsamını ve kontrol sayısını verir. Normal koşu bütün kontroller geçtikten sonra 0 çıkış kodu döndürür. Süre makineye bağlıdır, özellikle k = 12'deki büyük kesin binom katsayıları süreyi belirler.
+Normal aralıkta D(p), 38, 159, 646, 2601 ve 10422'de değişir. D(p) − h(p) hatası p = 7'de yaklaşık 0.270574 ile en büyük, p = 10421'de yaklaşık −0.999351 ile en küçüktür. [Kayıtlı sonuç](../../tests/np_verification.json), gerçek koşu kapsamını ve kontrol sayısını verir. Normal koşu bütün kontroller geçtikten sonra 0 çıkış kodu döndürür. Süre makineye bağlıdır, özellikle k = 12'deki büyük kesin binom katsayıları süreyi belirler.
 
 Bunlar sonlu hesap kontrolleridir. Yineleme, math.comb ve yalnız toplama kullanan karşılaştırma aynı Python tamsayı uygulamasını kullanır, bağımsız aritmetik altyapıları değildir. Genel ifadeler kanıtlara dayanır. Bütün k değerleri için tavan formülü açık kalır.
 
@@ -289,7 +289,7 @@ p_k = 2⌈4^k/π − 1/4⌉ − k − 1 eşitliğinin her k için tuttuğu KANIT
 
 ## Kaynaklar
 
-1. J. Augustus, [Mersenne tabanlarında ikinin kuvvetleri, eldesiz Pascal satırları](note.md), bu depodaki önceki not.
+1. J. Augustus, [Mersenne tabanlarında ikinin kuvvetleri, eldesiz Pascal satırları](PASCAL_MERSENNE_ROWS.md), bu depodaki önceki not.
 2. H. Robbins, A remark on Stirling's formula, Amer. Math. Monthly 62 (1955), sayı 1, s. 26 ile 29. https://doi.org/10.2307/2308012
 3. K. Conrad, [Proofs of integrality of binomial coefficients](https://kconrad.math.uconn.edu/blurbs/proofs/binomcoeffintegral.pdf), Bölüm 5, Legendre faktöriyel değerleme formülü.
 4. M. S. Islam, M. R. Islam, M. S. Hossan, M. H. Kibria, Generating binomial coefficients in a row of Pascal's triangle from extensions of powers of eleven, Heliyon 8 (2022), sayı 11, e11651. https://doi.org/10.1016/j.heliyon.2022.e11651, ön baskı https://arxiv.org/abs/2005.14490
