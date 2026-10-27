@@ -24,7 +24,7 @@ Açıklama, önce taban ve hane kavramlarını kurar. Ardından Pascal üçgeni,
 
 ### 1.1. Bir sayının hanelerle gösterilmesi
 
-Onluk tabanda 347 sayısı, 3 × 100 + 4 × 10 + 7 biçiminde açılır. Hanelerin değeri kadar konumu da önemlidir. Aynı kural b tabanında da geçerlidir. Soldan sağa a₂, a₁, a₀ haneleri, a₂b² + a₁b + a₀ sayısını gösterir.
+Onluk tabanda 347 sayısı, 3 × 100 + 4 × 10 + 7 biçiminde açılır. Hanelerin değeri kadar konumu da önemlidir. Aynı kural b tabanında da geçerlidir. Soldan sağa a₂, a₁, a₀ haneleri, a₂b<sup>2</sup> + a₁b + a₀ sayısını gösterir.
 
 Geçerli bir hane 0 ile b − 1 arasındaki bir tamsayıdır. Hane değeri b'ye ulaştığında bir üst konuma elde aktarılır. Onluk tabanda 10'un tek hane olmaması bu kuralın özel bir örneğidir.
 
@@ -69,11 +69,11 @@ n ≥ 1 için merkez katsayıları kesin olarak artar. Bu nedenle bir tabanda s�
 
 Binom teoremi, (b + 1)<sup>n</sup> açılımının katsayılarını Pascal üçgeninden verir. Örneğin n = 4 için sonuç şöyledir:
 
-(b + 1)⁴ = b⁴ + 4b³ + 6b² + 4b + 1.
+(b + 1)<sup>4</sup> = b<sup>4</sup> + 4b<sup>3</sup> + 6b<sup>2</sup> + 4b + 1.
 
 Bu açılımın katsayıları [1, 4, 6, 4, 1] dizisidir. Bütün katsayılar b'den küçük olduğunda bu dizi, sonucun b tabanındaki hanelerini doğrudan verir. Aksi durumda özdeşlik yine doğrudur, ancak haneler elde taşıma nedeniyle değişir.
 
-Onluk tabanda 11² = 121, 11³ = 1331 ve 11⁴ = 14641 sonuçları bu ilişkiyi gösterir. Buna karşılık 11⁵ = 161051 olur. Beşinci Pascal satırındaki iki adet 10, onluk tabanda hane olamadığı için [1, 5, 10, 10, 5, 1] dizisi doğrudan korunmaz.
+Onluk tabanda 11<sup>2</sup> = 121, 11<sup>3</sup> = 1331 ve 11<sup>4</sup> = 14641 sonuçları bu ilişkiyi gösterir. Buna karşılık 11<sup>5</sup> = 161051 olur. Beşinci Pascal satırındaki iki adet 10, onluk tabanda hane olamadığı için [1, 5, 10, 10, 5, 1] dizisi doğrudan korunmaz.
 
 ### 3.2. Mersenne tabanının seçilmesi
 
@@ -87,9 +87,9 @@ Burada p ≥ 2 tamsayı bir parametredir. p'nin asal olması veya 2<sup>p</sup> 
 
 p = 3 seçildiğinde taban 7 olur. Dördüncü Pascal satırı [1, 4, 6, 4, 1] bu tabana sığar. Sayının değerini elle hesaplayabiliriz:
 
-1 × 7⁴ + 4 × 7³ + 6 × 7² + 4 × 7 + 1 = 2401 + 1372 + 294 + 28 + 1 = 4096.
+1 × 7<sup>4</sup> + 4 × 7<sup>3</sup> + 6 × 7<sup>2</sup> + 4 × 7 + 1 = 2401 + 1372 + 294 + 28 + 1 = 4096.
 
-Bu sonuç 8⁴ = 2¹² sayısıdır. Beşinci satır ise [1, 5, 10, 10, 5, 1] olur. 7 tabanında 10 tek bir hane olamaz. Sağdan sola elde uygulanınca haneler değişir:
+Bu sonuç 8<sup>4</sup> = 2<sup>12</sup> sayısıdır. Beşinci satır ise [1, 5, 10, 10, 5, 1] olur. 7 tabanında 10 tek bir hane olamaz. Sağdan sola elde uygulanınca haneler değişir:
 
 | İşlem | Hanede kalan | Sola taşınan |
 |---|---|---|
@@ -97,7 +97,7 @@ Bu sonuç 8⁴ = 2¹² sayısıdır. Beşinci satır ise [1, 5, 10, 10, 5, 1] ol
 | Soldaki 10 + 1 = 11 = 1 × 7 + 4 | 4 | 1 |
 | Yanındaki 5 + 1 = 6 | 6 | 0 |
 
-Sonuç [1, 6, 4, 3, 5, 1] olur. Sayının değeri hâlâ 8⁵ = 32768'dir. Kaybolan şey sayısal eşitlik değil, Pascal satırının aynen hane dizisi olarak kalmasıdır. Bu yüzden N(3) = 4 olur. Tanım p = 3 için geçerlidir, ancak p + 2 güvencesi yalnız p ≥ 7 içindir.
+Sonuç [1, 6, 4, 3, 5, 1] olur. Sayının değeri hâlâ 8<sup>5</sup> = 32768'dir. Kaybolan şey sayısal eşitlik değil, Pascal satırının aynen hane dizisi olarak kalmasıdır. Bu yüzden N(3) = 4 olur. Tanım p = 3 için geçerlidir, ancak p + 2 güvencesi yalnız p ≥ 7 içindir.
 
 ## 4. İlk çalışmanın seçtiği satır
 
@@ -109,7 +109,7 @@ p = 7 seçildiğinde b = 127 ve n = 9 olur. Dokuzuncu satır şöyledir:
 1 9 36 84 126 126 84 36 9 1
 ```
 
-En büyük katsayı 126'dır. Bu değer 127'den küçük olduğundan on katsayının tamamı geçerli hanedir. Hanelerin konum değerleriyle toplanması 2<sup>7×9</sup> = 2⁶³ sonucunu verir.
+En büyük katsayı 126'dır. Bu değer 127'den küçük olduğundan on katsayının tamamı geçerli hanedir. Hanelerin konum değerleriyle toplanması 2<sup>7×9</sup> = 2<sup>63</sup> sonucunu verir.
 
 | Satır | En büyük katsayı | 127 tabanında durum |
 |---|---|---|
@@ -141,7 +141,7 @@ Sonuç N(38) = 41'dir. İlk çalışma 40. satırın geçerli olduğunu söyler.
 
 ### 5.2. Aynı taban, farklı sayısal değer
 
-40\. satırın haneleri 2<sup>38×40</sup> = 2¹⁵²⁰ sayısını gösterir. 41. satırın haneleri ise 2<sup>38×41</sup> = 2¹⁵⁵⁸ sayısını gösterir. Taban aynıdır, temsil edilen sayılar farklıdır.
+40\. satırın haneleri 2<sup>38×40</sup> = 2<sup>1520</sup> sayısını gösterir. 41. satırın haneleri ise 2<sup>38×41</sup> = 2<sup>1558</sup> sayısını gösterir. Taban aynıdır, temsil edilen sayılar farklıdır.
 
 N(p), o tabanda yazılabilecek en büyük sayıyı ifade etmez. Her tabanda daha fazla hane kullanılarak daha büyük sayılar yazılabilir. N(p) yalnızca Pascal katsayılarının elde taşımadan korunabildiği satır ailesinin sınırıdır.
 
@@ -199,9 +199,9 @@ N(p), Pascal katsayılarını bir sayının haneleri olarak kullanırken geçerl
 
 p = 3 için taban 7'dir. Dördüncü Pascal satırı [1, 4, 6, 4, 1] olur. En büyük katsayı 6 < 7 olduğu için hepsi geçerli hanedir. Gerçekten
 
-1 × 7⁴ + 4 × 7³ + 6 × 7² + 4 × 7 + 1 = 4096 = 8⁴ = 2¹².
+1 × 7<sup>4</sup> + 4 × 7<sup>3</sup> + 6 × 7<sup>2</sup> + 4 × 7 + 1 = 4096 = 8<sup>4</sup> = 2<sup>12</sup>.
 
-Beşinci satır [1, 5, 10, 10, 5, 1] olur. 10, 7 tabanında hane değildir. Aynı katsayı açılımının değeri hâlâ 8⁵ = 32768'dir, fakat gerçek haneler [1, 6, 4, 3, 5, 1] olur. Sağdaki 10, 3 kalanı ve 1 elde verir. Soldaki 10 bu eldeyle 11 olur, 4 kalanı ve 1 elde verir. Yanındaki 5 de 6 olur. Bu yüzden N(3) = 4. Buradaki p = 3 örneği tanımı açıklar, p ≥ 7 isteyen Teorem A'nın kapsamına girmez.
+Beşinci satır [1, 5, 10, 10, 5, 1] olur. 10, 7 tabanında hane değildir. Aynı katsayı açılımının değeri hâlâ 8<sup>5</sup> = 32768'dir, fakat gerçek haneler [1, 6, 4, 3, 5, 1] olur. Sağdaki 10, 3 kalanı ve 1 elde verir. Soldaki 10 bu eldeyle 11 olur, 4 kalanı ve 1 elde verir. Yanındaki 5 de 6 olur. Bu yüzden N(3) = 4. Buradaki p = 3 örneği tanımı açıklar, p ≥ 7 isteyen Teorem A'nın kapsamına girmez.
 
 ### Örnek 2. Sınırdaki eşitlik de başarısızdır
 
@@ -209,7 +209,7 @@ p = 2 için taban 3'tür. İkinci satır [1, 2, 1] sığar. Üçüncü satır [1
 
 ### Örnek 3. 127 tabanında bütün satırı görmek
 
-p = 7 için taban 127'dir. 9. satır [1, 9, 36, 84, 126, 126, 84, 36, 9, 1] olur ve 2⁶³ sayısını gösterir. Merkez 126 < 127 iken bir sonraki satırın merkezi 252'dir. Böylece N(7) = 9 olur. Bu örnekte ilk notun p + 2 seçimi sınıra tam ulaşır.
+p = 7 için taban 127'dir. 9. satır [1, 9, 36, 84, 126, 126, 84, 36, 9, 1] olur ve 2<sup>63</sup> sayısını gösterir. Merkez 126 < 127 iken bir sonraki satırın merkezi 252'dir. Böylece N(7) = 9 olur. Bu örnekte ilk notun p + 2 seçimi sınıra tam ulaşır.
 
 ### Örnek 4. Güvenli satırın ötesine geçmek
 
@@ -227,11 +227,11 @@ N(38) = 41. Dolayısıyla p + 2 = 40 güvenli bir seçimdir, ama son geçerli se
 
 42\. satırı elde taşımadan yazmak istediğimizi düşünelim. Merkezi 538257874440'tır. p = 38 tabanı yetersizdir. p = 39 için taban 549755813887 olur ve merkez bu tabandan küçüktür. Bu nedenle Mersenne tabanları arasında yeterli en küçük p değeri 39'dur. N(39) = 42 olduğu da bir sonraki merkezin 1052049481860 olmasıyla doğrulanır.
 
-Genel karar kuralı şudur: n satırı seçildiğinde c(n) < 2^p − 1 sağlayan en küçük p ≥ 2 aranır. Bu, sabit p için N(p) bulma sorusunun tersidir. Bütün katsayıları ayrı ayrı sınamak yerine en büyüğünü sınamak yeterlidir.
+Genel karar kuralı şudur: n satırı seçildiğinde c(n) < 2<sup>p</sup> − 1 sağlayan en küçük p ≥ 2 aranır. Bu, sabit p için N(p) bulma sorusunun tersidir. Bütün katsayıları ayrı ayrı sınamak yerine en büyüğünü sınamak yeterlidir.
 
 ### Örnek 6. Bir milyon bitten uzun bir sayı
 
-p = 1000 için taban b = 2¹⁰⁰⁰ − 1 ve son satır N(1000) = 1005'tir. Bu satırın başı ve sonu şöyledir:
+p = 1000 için taban b = 2<sup>1000</sup> − 1 ve son satır N(1000) = 1005'tir. Bu satırın başı ve sonu şöyledir:
 
 [1, 1005, 504510, …, 504510, 1005, 1].
 
@@ -253,27 +253,27 @@ Bu bitleri sıkıştırmadan, sekiz bitlik baytlar halinde saklamak 125 001 250 
 
 ### Örnek 8. Bir trilyon parametresi
 
-p = 10¹² = 1 000 000 000 000 olsun. Bu ölçekte kısa bir tabloyu bütün satırları deneyerek üretmek yerine kanıtlanmış hata bandını kullanabiliriz. h(p) = ½ log₂(πp/2) için 20.257 < h(p) < 20.258 olur. Matematik notundaki −1 < E(p) ≤ 0.270575 sınırıyla
+p = 10<sup>12</sup> = 1 000 000 000 000 olsun. Bu ölçekte kısa bir tabloyu bütün satırları deneyerek üretmek yerine kanıtlanmış hata bandını kullanabiliriz. h(p) = ½ log₂(πp/2) için 20.257 < h(p) < 20.258 olur. Matematik notundaki −1 < E(p) ≤ 0.270575 sınırıyla
 
 19.257 < N(p) − p < 20.529.
 
-N(p) − p bir tamsayıdır. Bu aralıkta yalnız 20 vardır. Dolayısıyla N(p) = 10¹² + 20 = 1 000 000 000 020.
+N(p) − p bir tamsayıdır. Bu aralıkta yalnız 20 vardır. Dolayısıyla N(p) = 10<sup>12</sup> + 20 = 1 000 000 000 020.
 
-n = 10¹² + 20 yazarsak satırın düzeni [1, n, n(n − 1)/2, …, n(n − 1)/2, n, 1] olur. Toplam 10¹² + 21 hane vardır. Temsil edilen sayı 2<sup>10²⁴ + 20 × 10¹²</sup> olur. Bu sonuç bütün katsayıların tek tek hesaplandığı anlamına gelmez. Son satırın hangi satır olduğuna, kanıtlanmış sınırın izin verdiği tek tamsayı seçilerek karar verilmiştir.
+n = 10<sup>12</sup> + 20 yazarsak satırın düzeni [1, n, n(n − 1)/2, …, n(n − 1)/2, n, 1] olur. Toplam 10<sup>12</sup> + 21 hane vardır. Temsil edilen sayı 2<sup>10<sup>24</sup> + 20 × 10<sup>12</sup></sup> olur. Bu sonuç bütün katsayıların tek tek hesaplandığı anlamına gelmez. Son satırın hangi satır olduğuna, kanıtlanmış sınırın izin verdiği tek tamsayı seçilerek karar verilmiştir.
 
 ### Örnek 9. p'nin kendisi 101 rakamlı olduğunda
 
-Şimdi p = 10¹⁰⁰ olsun. Bu, onluk yazımda bir adet 1 ve ardından 100 adet 0 demektir. Taban b = 2<sup>10¹⁰⁰</sup> − 1 olur. h(p) için 166.422 < h(p) < 166.423 sınırları geçerlidir. Aynı hata bandı
+Şimdi p = 10<sup>100</sup> olsun. Bu, onluk yazımda bir adet 1 ve ardından 100 adet 0 demektir. Taban b = 2<sup>10<sup>100</sup></sup> − 1 olur. h(p) için 166.422 < h(p) < 166.423 sınırları geçerlidir. Aynı hata bandı
 
 165.422 < N(p) − p < 166.694
 
-verir. Tek olası tamsayı 166'dır. Dolayısıyla N(10¹⁰⁰) = 10¹⁰⁰ + 166 kesin olarak belirlenir.
+verir. Tek olası tamsayı 166'dır. Dolayısıyla N(10<sup>100</sup>) = 10<sup>100</sup> + 166 kesin olarak belirlenir.
 
-n = 10¹⁰⁰ + 166 olmak üzere bu dev satır yine
+n = 10<sup>100</sup> + 166 olmak üzere bu dev satır yine
 
 [1, n, n(n − 1)/2, …, n(n − 1)/2, n, 1]
 
-biçimindedir. Tam hane sayısı 10¹⁰⁰ + 167'dir. Temsil edilen sayı 2<sup>10²⁰⁰ + 166 × 10¹⁰⁰</sup> olur. Başındaki ve sonundaki 1, Pascal satırının uçlarıdır. Aradaki … bilinmeyen veya keyfî değerler değil, n satırının burada yazılmayan belirli binom katsayılarıdır.
+biçimindedir. Tam hane sayısı 10<sup>100</sup> + 167'dir. Temsil edilen sayı 2<sup>10<sup>200</sup> + 166 × 10<sup>100</sup></sup> olur. Başındaki ve sonundaki 1, Pascal satırının uçlarıdır. Aradaki … bilinmeyen veya keyfî değerler değil, n satırının burada yazılmayan belirli binom katsayılarıdır.
 
 Bu örnekte N(p)'nin yararı özellikle açıktır: yazdırılması mümkün olmayan bir satır ailesinin eldesiz geçerlilik sınırını matematikle belirler. Satırın tamamını saklayabildiğimiz veya hesaplayıp ekrana döktüğümüz iddia edilmez.
 
@@ -368,7 +368,7 @@ Aynı tabandaki bütün satır sayıları için başka bir kural vardır. R(b,n)
 
 N(x,y,z)[a], satır, giriş ve konum ilişkisini yön seçimiyle birlikte adresleme önerisidir. [a] için 0 soldan, 1 sağdan seçim düşünülür. z = 0 merkez seçimi olabilir. Konuşulan örneklerde x hane sayısını gösterdiği için Pascal satır numarası x − 1 olur. y alanına girilen 1 ise tabanla özdeşleştirilmez. Alanların tam anlamı ve veri türleri henüz sabitlenmiş değildir.
 
-Hane okuma, konuma göre kuvvet alma ve basamak katkısı ayrı işlemlerdir. 14641 içindeki iki 4'ü okumak iki durumda da 4 verir. Soldan sıfırla başlayan konumu üs yapmak seçilirse sonuçlar 4¹ ve 4³ olur. Onluk basamak katkıları ise soldaki 4 için 4 × 10³, sağdaki 4 için 4 × 10¹ olur. Yalnız yön bitini değiştirmek bu üç işlemden hangisinin istendiğini belirlemez. İşlem türü açık olmalıdır.
+Hane okuma, konuma göre kuvvet alma ve basamak katkısı ayrı işlemlerdir. 14641 içindeki iki 4'ü okumak iki durumda da 4 verir. Soldan sıfırla başlayan konumu üs yapmak seçilirse sonuçlar 4<sup>1</sup> ve 4<sup>3</sup> olur. Onluk basamak katkıları ise soldaki 4 için 4 × 10<sup>3</sup>, sağdaki 4 için 4 × 10<sup>1</sup> olur. Yalnız yön bitini değiştirmek bu üç işlemden hangisinin istendiğini belirlemez. İşlem türü açık olmalıdır.
 
 Bu nedenle küçük yazılım modeli belirsiz N gösterimini bir komut standardı gibi uygulamaz. Matematik adresi olarak C(n,k), yürütme hücresi için matris koordinatı, kayıt erişimi için adres numarası kullanır. İleride bunların ortak bir adres sözcüğüne nasıl kodlanacağı tasarım kararıdır.
 

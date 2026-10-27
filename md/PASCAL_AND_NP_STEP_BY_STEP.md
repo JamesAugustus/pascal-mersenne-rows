@@ -24,7 +24,7 @@ The explanation starts with bases and digits, then introduces Pascal's triangle,
 
 ### 1.1. Writing a number as digits
 
-In base ten, 347 expands as 3 × 100 + 4 × 10 + 7. Both the digit values and their positions matter. The same rule holds in base b. The digits a₂, a₁, a₀, read from left to right, represent a₂b² + a₁b + a₀.
+In base ten, 347 expands as 3 × 100 + 4 × 10 + 7. Both the digit values and their positions matter. The same rule holds in base b. The digits a₂, a₁, a₀, read from left to right, represent a₂b<sup>2</sup> + a₁b + a₀.
 
 A valid digit is an integer from 0 to b − 1. Once a digit value reaches b, a carry moves to the next position. The fact that 10 is not a single decimal digit is one instance of this rule.
 
@@ -69,11 +69,11 @@ For n ≥ 1, central coefficients strictly increase. Once the base limit is reac
 
 The binomial theorem gives the coefficients of (b + 1)<sup>n</sup> from Pascal's triangle. For n = 4,
 
-(b + 1)⁴ = b⁴ + 4b³ + 6b² + 4b + 1.
+(b + 1)<sup>4</sup> = b<sup>4</sup> + 4b<sup>3</sup> + 6b<sup>2</sup> + 4b + 1.
 
 Its coefficient sequence is [1, 4, 6, 4, 1]. When every coefficient is smaller than b, this sequence directly gives the base-b digits of the result. Otherwise the identity remains true, but carrying changes the digits.
 
-In base ten, 11² = 121, 11³ = 1331 and 11⁴ = 14641 illustrate the relationship. Yet 11⁵ = 161051. The two 10s in Pascal row 5 cannot be decimal digits, so [1, 5, 10, 10, 5, 1] is not preserved directly.
+In base ten, 11<sup>2</sup> = 121, 11<sup>3</sup> = 1331 and 11<sup>4</sup> = 14641 illustrate the relationship. Yet 11<sup>5</sup> = 161051. The two 10s in Pascal row 5 cannot be decimal digits, so [1, 5, 10, 10, 5, 1] is not preserved directly.
 
 ### 3.2. Choosing a Mersenne base
 
@@ -87,9 +87,9 @@ Two statements must be kept separate. The numerical identity holds for every val
 
 With p = 3, the base is 7. Pascal row 4, [1, 4, 6, 4, 1], fits this base. Its value can be calculated by hand:
 
-1 × 7⁴ + 4 × 7³ + 6 × 7² + 4 × 7 + 1 = 2401 + 1372 + 294 + 28 + 1 = 4096.
+1 × 7<sup>4</sup> + 4 × 7<sup>3</sup> + 6 × 7<sup>2</sup> + 4 × 7 + 1 = 2401 + 1372 + 294 + 28 + 1 = 4096.
 
-This equals 8⁴ = 2¹². Row 5 is [1, 5, 10, 10, 5, 1]. In base 7, 10 cannot be a single digit. Carrying from right to left changes the sequence:
+This equals 8<sup>4</sup> = 2<sup>12</sup>. Row 5 is [1, 5, 10, 10, 5, 1]. In base 7, 10 cannot be a single digit. Carrying from right to left changes the sequence:
 
 | Operation | Digit left in place | Carry to the left |
 |---|---|---|
@@ -97,7 +97,7 @@ This equals 8⁴ = 2¹². Row 5 is [1, 5, 10, 10, 5, 1]. In base 7, 10 cannot be
 | Left-hand 10 + 1 = 11 = 1 × 7 + 4 | 4 | 1 |
 | Neighboring 5 + 1 = 6 | 6 | 0 |
 
-The result is [1, 6, 4, 3, 5, 1]. Its value is still 8⁵ = 32768. What is lost is not the numerical identity, but the original Pascal row as the actual digit sequence. Thus N(3) = 4. The definition applies to p = 3, while the p + 2 guarantee applies only to p ≥ 7.
+The result is [1, 6, 4, 3, 5, 1]. Its value is still 8<sup>5</sup> = 32768. What is lost is not the numerical identity, but the original Pascal row as the actual digit sequence. Thus N(3) = 4. The definition applies to p = 3, while the p + 2 guarantee applies only to p ≥ 7.
 
 ## 4. The row selected by the first study
 
@@ -109,7 +109,7 @@ For p = 7, the base is 127 and n = 9. Row 9 is
 1 9 36 84 126 126 84 36 9 1
 ```
 
-Its largest coefficient is 126. Since 126 < 127, all ten coefficients are valid digits. Their sum with the positional weights is 2<sup>7×9</sup> = 2⁶³.
+Its largest coefficient is 126. Since 126 < 127, all ten coefficients are valid digits. Their sum with the positional weights is 2<sup>7×9</sup> = 2<sup>63</sup>.
 
 | Row | Largest coefficient | Status in base 127 |
 |---|---|---|
@@ -141,7 +141,7 @@ Therefore N(38) = 41. The first study guarantees row 40. The boundary study dete
 
 ### 5.2. The same base, different numerical values
 
-The digits of row 40 represent 2<sup>38×40</sup> = 2¹⁵²⁰. Those of row 41 represent 2<sup>38×41</sup> = 2¹⁵⁵⁸. The base is the same, but the numbers represented are different.
+The digits of row 40 represent 2<sup>38×40</sup> = 2<sup>1520</sup>. Those of row 41 represent 2<sup>38×41</sup> = 2<sup>1558</sup>. The base is the same, but the numbers represented are different.
 
 N(p) is not the largest number writable in that base. Any base can represent larger numbers by using more digits. N(p) is only the boundary for the family of Pascal rows whose coefficients remain unchanged by carrying.
 
@@ -199,9 +199,9 @@ N(p) gives the validity boundary when Pascal coefficients are used as the digits
 
 For p = 3 the base is 7. Pascal row 4 is [1, 4, 6, 4, 1]. Its largest coefficient is 6 < 7, so all entries are valid digits. Indeed,
 
-1 × 7⁴ + 4 × 7³ + 6 × 7² + 4 × 7 + 1 = 4096 = 8⁴ = 2¹².
+1 × 7<sup>4</sup> + 4 × 7<sup>3</sup> + 6 × 7<sup>2</sup> + 4 × 7 + 1 = 4096 = 8<sup>4</sup> = 2<sup>12</sup>.
 
-Row 5 is [1, 5, 10, 10, 5, 1]. The value 10 is not a base-7 digit. The coefficient expansion still equals 8⁵ = 32768, but the actual digits are [1, 6, 4, 3, 5, 1]. The right-hand 10 gives remainder 3 and carry 1. The next 10 becomes 11 after that carry, giving remainder 4 and carry 1. Its neighboring 5 becomes 6. Thus N(3) = 4. This p = 3 example illustrates the definition; it is outside Theorem A, which requires p ≥ 7.
+Row 5 is [1, 5, 10, 10, 5, 1]. The value 10 is not a base-7 digit. The coefficient expansion still equals 8<sup>5</sup> = 32768, but the actual digits are [1, 6, 4, 3, 5, 1]. The right-hand 10 gives remainder 3 and carry 1. The next 10 becomes 11 after that carry, giving remainder 4 and carry 1. Its neighboring 5 becomes 6. Thus N(3) = 4. This p = 3 example illustrates the definition; it is outside Theorem A, which requires p ≥ 7.
 
 ### Example 2. Equality at the boundary also fails
 
@@ -209,7 +209,7 @@ For p = 2 the base is 3. Row 2, [1, 2, 1], fits. Row 3, [1, 3, 3, 1], does not, 
 
 ### Example 3. Seeing the complete row in base 127
 
-For p = 7 the base is 127. Row 9 is [1, 9, 36, 84, 126, 126, 84, 36, 9, 1] and represents 2⁶³. Its central coefficient is 126 < 127; the next row has central coefficient 252. Therefore N(7) = 9. In this example the first note's choice p + 2 reaches the boundary exactly.
+For p = 7 the base is 127. Row 9 is [1, 9, 36, 84, 126, 126, 84, 36, 9, 1] and represents 2<sup>63</sup>. Its central coefficient is 126 < 127; the next row has central coefficient 252. Therefore N(7) = 9. In this example the first note's choice p + 2 reaches the boundary exactly.
 
 ### Example 4. Going beyond the guaranteed row
 
@@ -227,11 +227,11 @@ N(38) = 41. Thus p + 2 = 40 is a safe choice, but not the last valid choice. A c
 
 Suppose we want to write row 42 without carrying. Its central coefficient is 538257874440. The p = 38 base is insufficient. For p = 39 the base is 549755813887, larger than the central coefficient. Therefore 39 is the smallest sufficient p among Mersenne bases. The next central coefficient, 1052049481860, also confirms N(39) = 42.
 
-The general decision rule is to choose the smallest p ≥ 2 satisfying c(n) < 2^p − 1 for the desired row n. This reverses the question of finding N(p) for a fixed p. It is sufficient to check the largest coefficient rather than every entry separately.
+The general decision rule is to choose the smallest p ≥ 2 satisfying c(n) < 2<sup>p</sup> − 1 for the desired row n. This reverses the question of finding N(p) for a fixed p. It is sufficient to check the largest coefficient rather than every entry separately.
 
 ### Example 6. A number longer than one million bits
 
-For p = 1000 the base is b = 2¹⁰⁰⁰ − 1 and the last row is N(1000) = 1005. The beginning and end of that row are
+For p = 1000 the base is b = 2<sup>1000</sup> − 1 and the last row is N(1000) = 1005. The beginning and end of that row are
 
 [1, 1005, 504510, …, 504510, 1005, 1].
 
@@ -253,27 +253,27 @@ Storing those bits without compression in eight-bit bytes requires 125 001 250 0
 
 ### Example 8. A parameter of one trillion
 
-Let p = 10¹² = 1 000 000 000 000. At this scale we can use the proved error band instead of trying every row. For h(p) = ½ log₂(πp/2), we have 20.257 < h(p) < 20.258. Combining this with −1 < E(p) ≤ 0.270575 from the mathematical note gives
+Let p = 10<sup>12</sup> = 1 000 000 000 000. At this scale we can use the proved error band instead of trying every row. For h(p) = ½ log₂(πp/2), we have 20.257 < h(p) < 20.258. Combining this with −1 < E(p) ≤ 0.270575 from the mathematical note gives
 
 19.257 < N(p) − p < 20.529.
 
-N(p) − p is an integer. The only integer in this interval is 20. Therefore N(p) = 10¹² + 20 = 1 000 000 000 020.
+N(p) − p is an integer. The only integer in this interval is 20. Therefore N(p) = 10<sup>12</sup> + 20 = 1 000 000 000 020.
 
-Writing n = 10¹² + 20, the row has the form [1, n, n(n − 1)/2, …, n(n − 1)/2, n, 1]. There are 10¹² + 21 digits. The represented number is 2<sup>10²⁴ + 20 × 10¹²</sup>. This does not mean every coefficient was computed individually. The last row was determined by selecting the unique integer permitted by the proved bound.
+Writing n = 10<sup>12</sup> + 20, the row has the form [1, n, n(n − 1)/2, …, n(n − 1)/2, n, 1]. There are 10<sup>12</sup> + 21 digits. The represented number is 2<sup>10<sup>24</sup> + 20 × 10<sup>12</sup></sup>. This does not mean every coefficient was computed individually. The last row was determined by selecting the unique integer permitted by the proved bound.
 
 ### Example 9. When p itself has 101 decimal digits
 
-Now let p = 10¹⁰⁰. In decimal, this is a single 1 followed by 100 zeros. The base is b = 2<sup>10¹⁰⁰</sup> − 1. We have 166.422 < h(p) < 166.423. The same error band gives
+Now let p = 10<sup>100</sup>. In decimal, this is a single 1 followed by 100 zeros. The base is b = 2<sup>10<sup>100</sup></sup> − 1. We have 166.422 < h(p) < 166.423. The same error band gives
 
 165.422 < N(p) − p < 166.694.
 
-The only possible integer is 166. Therefore N(10¹⁰⁰) = 10¹⁰⁰ + 166 is determined exactly.
+The only possible integer is 166. Therefore N(10<sup>100</sup>) = 10<sup>100</sup> + 166 is determined exactly.
 
-With n = 10¹⁰⁰ + 166, this enormous row again has the form
+With n = 10<sup>100</sup> + 166, this enormous row again has the form
 
 [1, n, n(n − 1)/2, …, n(n − 1)/2, n, 1].
 
-Its exact digit count is 10¹⁰⁰ + 167. It represents 2<sup>10²⁰⁰ + 166 × 10¹⁰⁰</sup>. The 1 at each end is an endpoint of the Pascal row. The … stands for specific omitted binomial coefficients of row n, not unknown or arbitrary values.
+Its exact digit count is 10<sup>100</sup> + 167. It represents 2<sup>10<sup>200</sup> + 166 × 10<sup>100</sup></sup>. The 1 at each end is an endpoint of the Pascal row. The … stands for specific omitted binomial coefficients of row n, not unknown or arbitrary values.
 
 The use of N(p) is especially clear here: mathematics determines the carry-free boundary for a family of rows that cannot be printed in full. This does not claim that we stored the complete row or computed and displayed every entry.
 
@@ -368,7 +368,7 @@ The second product is numerically correct, but the coefficients of Pascal row 5,
 
 N(x,y,z)[a] is a proposed notation for addressing row, input and position relationships with a direction selector. The intended choices for [a] are 0 for selection from the left and 1 from the right. z = 0 may select the center. In the examples discussed, x counts digits, so the Pascal row index is x − 1. The input value 1 in the y field is not identified with the base. The complete field meanings and data types are not yet fixed.
 
-Reading a digit, raising it to its position, and computing its positional contribution are separate operations. Reading either 4 in 14641 returns 4. If its zero-based position from the left is used as the exponent, the results are 4¹ and 4³. Their decimal positional contributions are instead 4 × 10³ for the left 4 and 4 × 10¹ for the right 4. Changing the direction bit alone does not specify which operation is intended. The operation type must be explicit.
+Reading a digit, raising it to its position, and computing its positional contribution are separate operations. Reading either 4 in 14641 returns 4. If its zero-based position from the left is used as the exponent, the results are 4<sup>1</sup> and 4<sup>3</sup>. Their decimal positional contributions are instead 4 × 10<sup>3</sup> for the left 4 and 4 × 10<sup>1</sup> for the right 4. Changing the direction bit alone does not specify which operation is intended. The operation type must be explicit.
 
 The small software model therefore does not implement the unsettled N notation as an instruction standard. It uses C(n,k) for the mathematical address, a matrix coordinate for an execution cell, and an address number for record access. Encoding these in a shared address word is a later design decision.
 
