@@ -6,6 +6,12 @@ Pascal satırlarıyla yazıyorum. Kanıtı matematik notunda; örneğini yeniden
 hesaplamak için Python ve C programları da üst klasörde.
 [English](../README.md)
 
+## Birleşik teknik çalışma
+
+Ana teknik metin ve sonraki ekler tek bir okuma düzeninde sunulur. [Türkçe PDF](../yayin/PASCAL_MERSENNE_NP_TR.pdf), [English PDF](../yayin/PASCAL_MERSENNE_NP_EN.pdf), [Markdown](../yayin/PASCAL_MERSENNE_NP_TR.md).
+
+James Augustus. [ORCID: 0009-0002-7286-7730](https://orcid.org/0009-0002-7286-7730).
+
 ## Sonuç ve örnek
 
 Matematik notu, seçtiğim taban ve satır ilişkisinde hanelerin hangi
@@ -20,6 +26,22 @@ için p + 2 satırı, 2^p − 1 tabanında eldesizdir.
 
 Bu tabanda 126 tek bir hanedir. Bütün haneler 127'den küçük olduğu için
 elde taşıma gerekmez. Bu sonuç, genel bir asallık testi değildir.
+
+## N(p): Son eldesiz Pascal satırı
+
+İlk notta, p ≥ 7 için p + 2 numaralı Pascal satırının 2^p − 1 tabanında elde taşımadan yazılabildiğini gösterdim. Bu notta aynı tabanı koruyup satırları ilerletiyorum: Pascal katsayıları hangi satıra kadar bu tabanın haneleri olarak kalabiliyor?
+
+Bu sınırın satır numarasına N(p) diyorum. Örneğin p = 38 olduğunda ilk çalışmanın seçtiği satır 40'tır. Fakat 41. satır da tabana sığar. 42. satırda en büyük katsayı taban sınırını aştığı için elde gerekir. Bu yüzden N(38) = 41 olur.
+
+N(p), aynı çalışmanın devamıdır. Önceki notun ele aldığı sınır sorusunu genişletir ve son geçerli satırın p değiştikçe nasıl ilerlediğini inceler. Kanıtlanan sonuçlar ile hesapla kontrol edilen örnekler ayrı verilir. Bütün eşikler için önerilen kısa formül ise henüz kanıtlanmış değildir.
+
+[Sade açıklama](../PASCAL_VE_NP_ADIM_ADIM.md) ([Türkçe PDF](../PASCAL_VE_NP_ADIM_ADIM.pdf)), 7 tabanından p = 10^100 değerine uzanan on örnekle N(p)'nin ne işe yaradığını anlatır. Aynı içeriğin [İngilizcesi](../PASCAL_AND_NP_STEP_BY_STEP.md) ([PDF](../PASCAL_AND_NP_STEP_BY_STEP.pdf)) de vardır. Tanımlar, aynı örnekler ve ayrıntılı kanıtlar [N(p) matematik notunda](NP_ELDESIZ_SATIR_SINIRI.pdf) ([metin](NP_ELDESIZ_SATIR_SINIRI.md)) bulunur.
+
+Deponun kökünde kısa kontrol `python3 -B tests/verify_np.py --quick`, p ≤ 20000 ve k ≤ 12 kapsamındaki tam kontrol `python3 -B tests/verify_np.py` ile çalışır. [Kayıtlı sonuç](../tests/np_verification.json) kapsamı gösterir. Büyük binom katsayıları nedeniyle tam koşu birkaç dakika sürebilir. Program, kurulum ve doğrulayıcı regresyon testleri `python3 -B -m unittest discover -s tests -p 'test_*.py'` ile çalışır.
+
+Sade açıklama ayrıca önerilen PCCPU hücre modelini içerir. Değerler, işçi görevleri ve denetleyici durumu ortak bir mantıksal adres düzeninde tutulur. [Küçük yazılım örneği](../examples/pccpu_address_model.py), ayrı işçi kayıtlarında 84 ve 126 üretir, toplam 210'u hedef hücreye yazar. Depo kökünden `python3 examples/pccpu_address_model.py` ile çalışır. Bu, bağımlılık ve adresleme modelidir; uygulanmış çok çekirdekli donanım değildir.
+
+Aynı modelin [C/GMP sürümü](../examples/pccpu_address_model.c) de bulunur. Depo kökünden `bash examples/run_pccpu_c.sh` komutu derler, testleri çalıştırır, küçük örneği ve 59 haneli büyük sayı sonucunu gösterir. C11 derleyicisi ve GMP geliştirme başlıkları gerekir. C testleri 20.100 komşu Pascal toplamını bağımsız, yalnız toplama kullanan bir hesapla karşılaştırır; işlem sırası ve elde sınırlarını da denetler. Python sürümü okunabilir bir karşılaştırma örneği olarak korunmuştur.
 
 ## Nasıl yaptım?
 

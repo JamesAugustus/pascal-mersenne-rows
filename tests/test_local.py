@@ -206,7 +206,9 @@ class LocalChecks(unittest.TestCase):
         spec.loader.exec_module(module)
         self.assertEqual({str(path.relative_to(target)) for path in target.rglob("*") if path.is_file()},
                          set(module.FILES))
-        for referenced in ("README.md", "setup/install.py", "tests/test_local.py", "tr/README.md", "tr/note.md", "tr/note.pdf", "tr/tables/theorems.txt",
+        for referenced in ("PASCAL_VE_NP_ADIM_ADIM.md", "PASCAL_VE_NP_ADIM_ADIM.pdf", "README.md", "setup/install.py", "tests/test_local.py", "tr/README.md", "tr/note.md", "tr/note.pdf", "tr/tables/theorems.txt",
+                           "NP_CARRY_FREE_ROW_BOUND.md", "NP_CARRY_FREE_ROW_BOUND.pdf", "tr/NP_ELDESIZ_SATIR_SINIRI.md", "tr/NP_ELDESIZ_SATIR_SINIRI.pdf",
+                           "tests/verify_np.py", "tests/test_np.py", "tests/np_verification.json",
                            "tables/theorems.txt", 
                            "coordinates_en.pdf", "tr/coordinates_tr.pdf"):
             self.assertTrue((target / referenced).is_file(), referenced)

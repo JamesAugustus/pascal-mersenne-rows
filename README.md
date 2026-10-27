@@ -6,6 +6,12 @@ rows in Mersenne bases. The proof is in the mathematical note; Python and
 C programs are included to reproduce examples.
 [Türkçe](tr/README.md)
 
+## Consolidated technical study
+
+The main technical text and subsequent additions are collected in one reading structure. [Türkçe PDF](yayin/PASCAL_MERSENNE_NP_TR.pdf), [English PDF](yayin/PASCAL_MERSENNE_NP_EN.pdf), [Markdown](yayin/PASCAL_MERSENNE_NP_EN.md).
+
+James Augustus. [ORCID: 0009-0002-7286-7730](https://orcid.org/0009-0002-7286-7730).
+
 ## Result and example
 
 The note proves when the chosen base and row give a digit representation
@@ -19,6 +25,22 @@ For example, these base-127 digits represent 2^63:
 
 Here 126 is a single digit. Every digit is below 127, so no carrying is
 needed. This result is not a general primality test.
+
+## N(p): The last carry-free Pascal row
+
+In the first note, I showed that for p ≥ 7, Pascal row p + 2 can be written in base 2^p − 1 without carrying. Here I keep the same base and move through the rows: how far can the Pascal coefficients remain valid digits in that base?
+
+I call the index of the last such row N(p). For example, when p = 38, the first study selects row 40. But row 41 also fits. In row 42, the largest coefficient exceeds the base, so carrying is needed. Thus N(38) = 41.
+
+N(p) continues the same study. It extends the boundary question already discussed in the first note and examines how the last valid row changes with p. Proved results are distinguished from examples checked by computation. The proposed short formula for every threshold remains unproved.
+
+The [step-by-step explanation](PASCAL_AND_NP_STEP_BY_STEP.md) ([English PDF](PASCAL_AND_NP_STEP_BY_STEP.pdf)) includes ten worked examples, from base 7 to p = 10^100, showing what N(p) is useful for. A matching [Turkish explanation](PASCAL_VE_NP_ADIM_ADIM.md) ([PDF](PASCAL_VE_NP_ADIM_ADIM.pdf)) is available. Definitions, the same examples and detailed proofs are in the [N(p) mathematical note](NP_CARRY_FREE_ROW_BOUND.pdf) ([text](NP_CARRY_FREE_ROW_BOUND.md)).
+
+From the repository root, run `python3 -B tests/verify_np.py --quick` for a short check or `python3 -B tests/verify_np.py` for the full p ≤ 20000 and k ≤ 12 scope. The [recorded result](tests/np_verification.json) identifies that scope. Large binomial coefficients can make the full run take several minutes. Run `python3 -B -m unittest discover -s tests -p 'test_*.py'` for the program, installer and verifier regression tests.
+
+The introductory explanation also includes a proposed PCCPU cell model. Values, worker tasks and controller state share a logical address scheme. The [small software example](examples/pccpu_address_model.py) produces 84 and 126 in separate worker records and writes their sum, 210, to a destination cell. Run `python3 examples/pccpu_address_model.py`. This is a dependency and addressing model, not implemented multicore hardware.
+
+The [C/GMP version](examples/pccpu_address_model.c) implements the same model. Run `bash examples/run_pccpu_c.sh` to compile, test and display both the small example and a 59-digit result. It requires a C11 compiler and GMP development headers. The C checks compare 20,100 adjacent Pascal sums with an independent addition-only construction and check scheduling and carry boundaries. The Python version remains a readable reference.
 
 ## How I did it
 
